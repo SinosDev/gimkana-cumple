@@ -437,8 +437,126 @@ const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCa
 function save(){localStorage.setItem('gimkana_completed',JSON.stringify(state.completed));localStorage.setItem('gimkana_team',state.team)}
 function progress(){let n=state.completed.length;$('counter').textContent=`${n}/10`;$('bar').style.width=`${n*10}%`;$('teamLabel').textContent=state.team?`Equipo: ${state.team}`:'Equipo sin nombre';if(n===10)finish()}
 function render(){ $('grid').innerHTML=tests.map((t,i)=>{let d=state.completed.includes(i);return `<button class="test ${d?'done':''}" onclick="openTest(${i})"><span class="check">${d?'✅':'🔎'}</span><div class="num">PRUEBA ${i+1}</div><div class="name">${t.title}</div></button>`}).join('') }
-function openTest(i){$('home').classList.add('hidden');$('finish').classList.add('hidden');$('test').classList.remove('hidden');let t=tests[i];$('test').innerHTML=`<h2>${t.title}</h2><p>${t.text}</p><p><em>Esta es una prueba provisional. La configuraremos juntos.</em></p><button class="small" onclick="complete(${i})">Marcar como hecha (demo)</button><br><button class="back" onclick="home()">← Volver</button>`}
+function openTest(i){
+
+    $('home').classList.add('hidden');
+    $('finish').classList.add('hidden');
+    $('test').classList.remove('hidden');
+
+    if(i===0){
+
+        $('test').innerHTML=`
+            <h2>🔎 Encuentra los 5 objetos</h2>
+
+            <p>
+                Busca los 5 objetos escondidos por el parque e introduce
+                la palabra escrita en cada uno.
+            </p>
+
+            <div class="answer-row">
+    <input id="obj1" class="field" placeholder="Objeto 1">
+    <span id="ok1"></span>
+</div>
+
+            <div class="answer-row">
+    <input id="obj2" class="field" placeholder="Objeto 2">
+    <span id="ok2"></span>
+</div>
+
+            <div class="answer-row">
+    <input id="obj3" class="field" placeholder="Objeto 3">
+    <span id="ok3"></span>
+</div>
+
+        <div class="answer-row">
+    <input id="obj4" class="field" placeholder="Objeto 4">
+    <span id="ok4"></span>
+</div>
+
+            <div class="answer-row">
+    <input id="obj5" class="field" placeholder="Objeto 5">
+    <span id="ok5"></span>
+</div>
+
+            <button class="small" onclick="checkObjects()">
+                Comprobar
+            </button>
+
+            <div id="objectsFeedback" class="feedback"></div>
+
+            <button class="back" onclick="home()">
+                ← Volver
+            </button>
+        `;
+
+        return;
+    }
+
+    let t=tests[i];
+
+    $('test').innerHTML=`
+        <h2>${t.title}</h2>
+        <p>${t.text}</p>
+
+        <button class="small" onclick="complete(${i})">
+            Marcar como hecha (demo)
+        </button>
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
 function complete(i){if(!state.completed.includes(i)){state.completed.push(i);state.completed.sort((a,b)=>a-b);save()}render();progress();if(state.completed.length<10)home()}
+    
+function checkObjects(){
+
+    const answers = [
+        "palmera",
+        "pirata",
+        "flor",
+        "tortuga",
+        "sol"
+    ];
+
+    let correct = 0;
+
+    for(let i=1;i<=5;i++){
+
+        const input = $('obj'+i);
+
+       if(norm(input.value) === norm(answers[i-1])){
+
+    input.style.borderColor = '#20a66b';
+    input.style.background = '#effbf5';
+    input.disabled = true;
+
+     $('ok'+i).innerHTML = '✅';
+
+    correct++;
+
+}else{
+
+            input.style.borderColor = '#d64545';
+            input.style.background = '#fff5f5';
+        }
+    }
+
+    if(correct === 5){
+
+        $('objectsFeedback').innerHTML =
+            '<span class="ok">🎉 ¡Prueba completada!</span>';
+
+        complete(0);
+
+    }else{
+
+        $('objectsFeedback').innerHTML =
+            `<span class="bad">Te faltan ${5-correct} palabras.</span>`;
+    }
+}
 function home(){$('test').classList.add('hidden');$('finish').classList.add('hidden');$('home').classList.remove('hidden')}
 function finish(){$('home').classList.add('hidden');$('test').classList.add('hidden');$('finish').classList.remove('hidden');$('finish').innerHTML=`<div class="finish"><div class="emoji">🏆🎉</div><h2>¡GIMKANA COMPLETADA!</h2><p>Equipo: <strong>${safe(state.team||'sin nombre')}</strong></p><div class="code">¡FIESTA!</div><p>Enséñale esta pantalla a la persona organizadora.</p></div>`}
 function safe(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
