@@ -814,28 +814,52 @@ function prueba2() {
             }
         </p>
 
-      
+        <div class="answer-row">
+            <input id="p2obj1" class="field"
+                placeholder="Pista 1"
+                value="${completada ? 'gracias' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="p2ok1">${completada ? '✅' : ''}</span>
+        </div>
 
         <div id="p2word1" class="feedback ${completada ? 'ok' : ''}">
             ${completada ? '🔓 Posición 1: <strong>NOS</strong>' : '🔒 Posición 1: Torres en el templo'}
         </div>
 
 
-   
+        <div class="answer-row">
+            <input id="p2obj2" class="field"
+                placeholder="Pista 2"
+                value="${completada ? 'por' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="p2ok2">${completada ? '✅' : ''}</span>
+        </div>
 
         <div id="p2word2" class="feedback ${completada ? 'ok' : ''}">
             ${completada ? '🔓 Posición 2: <strong>VEMOS</strong>' : '🔒 Posición 2: Accesos al templo'}
         </div>
 
 
-      
+        <div class="answer-row">
+            <input id="p2obj3" class="field"
+                placeholder="Pista 3"
+                value="${completada ? 'venir' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="p2ok3">${completada ? '✅' : ''}</span>
+        </div>
 
         <div id="p2word3" class="feedback ${completada ? 'ok' : ''}">
             ${completada ? '🔓 Posición 3: <strong>EN</strong>' : '🔒 Posición 3: Años que tardaron en construir'}
         </div>
 
 
-       
+        <div class="answer-row">
+            <input id="p2obj4" class="field"
+                placeholder="Pista 4"
+                value="${completada ? 'cumpleaños' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="p2ok4">${completada ? '✅' : ''}</span>
+        </div>
 
         <div id="p2word4" class="feedback ${completada ? 'ok' : ''}">
             ${completada ? '🔓 Posición 4: <strong>McDonald\'s</strong>' : '🔒 Posición 4: Rosetones'}
