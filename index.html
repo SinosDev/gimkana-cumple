@@ -5,71 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ff2f87">
 <title>Gimkana de cumpleaños 🎂</title>
-<style>
-/* ===== AJUSTES RÁPIDOS ===== */
 
-.login-card{
-    width:min(78vw,300px);   /* ancho */
-    margin-top:55vh;         /* altura */
-    padding:15px;            /* espacio interior */
-    background:rgba(255,255,255,.6); /* transparencia */
+<style>
+/* =========================
+   AJUSTES RÁPIDOS
+   ========================= */
+
+.login-card {
+    width: min(78vw, 300px);
+    margin-top: 55vh;
+    padding: 15px;
+    background: rgba(255,255,255,.6);
 }
+
 /* =========================
    VARIABLES
    ========================= */
 
-:root{
-    --pink:#ff2f87;
-    --pink2:#d91f6c;
-    --blue:#0b4f7a;
-    --yellow:#ffd83d;
-    --green:#20a66b;
-    --red:#d64545;
+:root {
+    --pink: #ff2f87;
+    --pink2: #d91f6c;
+    --blue: #0b4f7a;
+    --yellow: #ffd83d;
+    --green: #20a66b;
+    --red: #d64545;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", sans-serif;
+    color: #17324d;
+    background: linear-gradient(135deg, #fff8e9, #e8faff);
+}
+
+button, input {
+    font: inherit;
+}
+
+.hidden {
+    display: none !important;
 }
 
 /* =========================
-   GENERALES
+   PORTADA Y ACCESO
    ========================= */
 
-*{
-    box-sizing:border-box;
+#login {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px;
+    padding-bottom: 40px;
+    justify-content: center;
+    overflow: hidden;
 }
 
-body{
-    margin:0;
-    min-height:100vh;
-    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    color:#17324d;
-    background:linear-gradient(135deg,#fff8e9,#e8faff);
-}
-
-button,
-input{
-    font:inherit;
-}
-
-.hidden{
-    display:none!important;
-}
-
-/* =========================
-   PORTADA LOGIN
-   ========================= */
-
-#login{
-    min-height:100vh;
-    position:relative;
-    display:flex;
-    align-items:flex-end;
-    padding-bottom:40px;
-    justify-content:center;
-    padding:18px;
-    overflow:hidden;
-}
-
-.cover{
-    position:absolute;
-    inset:0;
+.cover {
+    position: absolute;
+    inset: 0;
     background-image:
         linear-gradient(
             to bottom,
@@ -77,428 +77,533 @@ input{
             rgba(0,0,0,.18)
         ),
         url('portada.png');
-
-    background-size:cover;
-    background-position:center;
+    background-size: cover;
+    background-position: center;
 }
 
-.login-card{
-    position:relative;
-
-    /* Tamaño */
-    width:min(78vw,300px);
-
-    /* Posición */
-    margin-top:55vh;
-
-    /* Aspecto */
-    padding:15px;
-    background:rgba(255,255,255,.6);
-    backdrop-filter:blur(12px);
-    border-radius:26px;
-
-    /* Sombra */
-    box-shadow:0 18px 55px rgba(0,0,0,.25);
-
-    text-align:center;
+.login-card {
+    position: relative;
+    width: min(78vw, 300px);
+    margin-top: 55vh;
+    padding: 15px;
+    background: rgba(255,255,255,.6);
+    backdrop-filter: blur(12px);
+    border-radius: 26px;
+    box-shadow: 0 18px 55px rgba(0,0,0,.25);
+    text-align: center;
 }
 
-.login-card h1{
-    margin:0 0 6px;
-    color:var(--blue);
-    font-size:24px;
+.login-card h1 {
+    margin: 0 0 6px;
+    color: var(--blue);
+    font-size: 24px;
 }
 
-.login-card p{
-    margin:0 0 15px;
-    color:#5e7180;
+.login-card p {
+    margin: 0 0 15px;
+    color: #5e7180;
 }
 
-.error{
-    margin-top:9px;
-    min-height:22px;
-    color:var(--red);
-    font-weight:800;
+.error {
+    margin-top: 9px;
+    min-height: 22px;
+    color: var(--red);
+    font-weight: 800;
 }
 
 /* =========================
    CAMPOS Y BOTONES
    ========================= */
 
-.field{
-    width:100%;
-    padding:13px 15px;
-
-    border:2px solid #dbe5eb;
-    border-radius:15px;
-
-    background:#fff;
-    outline:0;
+.field {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 15px;
+    border: 2px solid #dbe5eb;
+    border-radius: 15px;
+    background: #fff;
+    outline: 0;
 }
 
-.field:focus{
-    border-color:var(--pink);
+.field:focus {
+    border-color: var(--pink);
 }
 
-.primary{
-    width:100%;
-    margin-top:10px;
-    padding:14px;
-
-    border:0;
-    border-radius:15px;
-
-    background:var(--pink);
-    color:white;
-
-    font-weight:900;
-    cursor:pointer;
-
-    box-shadow:0 6px 0 var(--pink2);
+.primary {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    border: 0;
+    border-radius: 15px;
+    background: var(--pink);
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 6px 0 var(--pink2);
 }
 
-.primary:active{
-    transform:translateY(2px);
-    box-shadow:0 4px 0 var(--pink2);
+.primary:active {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 var(--pink2);
 }
 
-.small{
-    padding:12px 16px;
-
-    border:0;
-    border-radius:14px;
-
-    background:var(--blue);
-    color:white;
-
-    font-weight:850;
-    cursor:pointer;
+.small {
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 14px;
+    background: var(--blue);
+    color: white;
+    font-weight: 850;
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
-.back{
-    margin-top:14px;
-    padding:11px 15px;
-
-    border:0;
-    border-radius:14px;
-
-    background:#edf3f6;
-    color:var(--blue);
-
-    font-weight:850;
-    cursor:pointer;
+.back {
+    margin-top: 14px;
+    padding: 11px 15px;
+    border: 0;
+    border-radius: 14px;
+    background: #edf3f6;
+    color: var(--blue);
+    font-weight: 850;
+    cursor: pointer;
 }
 
 /* =========================
-   APP
+   APLICACIÓN
    ========================= */
 
-.app{
-    max-width:760px;
-    margin:auto;
-    padding:16px 16px 40px;
+.app {
+    max-width: 760px;
+    margin: auto;
+    padding: 16px 16px 40px;
 }
 
-.top,
-.card{
-    background:white;
-    border-radius:24px;
-    box-shadow:0 12px 30px rgba(20,35,60,.13);
+.top, .card {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(20,35,60,.13);
 }
 
-.top{
-    position:sticky;
-    top:10px;
-    z-index:5;
-
-    padding:18px;
+.top {
+    position: sticky;
+    top: 10px;
+    z-index: 5;
+    padding: 18px;
 }
 
-.card{
-    margin-top:16px;
-    padding:18px;
+.card {
+    margin-top: 16px;
+    padding: 18px;
+}
+
+.topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 950;
+    color: var(--blue);
+}
+
+.team {
+    font-size: 14px;
+    color: #6b7d89;
+}
+
+.counter {
+    font-size: 21px;
+    font-weight: 950;
+    color: var(--pink);
 }
 
 /* =========================
-   CABECERA
+   BARRA DE PROGRESO
    ========================= */
 
-.topline{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:5px;
+.progress {
+    height: 11px;
+    margin-top: 13px;
+    background: #edf1f4;
+    border-radius: 999px;
+    overflow: hidden;
 }
 
-.title{
-    font-size:24px;
-    font-weight:950;
-    color:var(--blue);
-}
-
-.team{
-    font-size:14px;
-    color:#6b7d89;
-}
-
-.counter{
-    font-size:21px;
-    font-weight:950;
-    color:var(--pink);
+.bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink), #ff8c36);
+    transition: width .35s;
 }
 
 /* =========================
-   BARRA PROGRESO
+   EQUIPO Y RESPUESTAS
    ========================= */
 
-.progress{
-    height:11px;
-    margin-top:13px;
-
-    background:#edf1f4;
-    border-radius:999px;
-
-    overflow:hidden;
+.team-row, .answer-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
 }
 
-.bar{
-    width:0;
-    height:100%;
+.answer-row .field {
+    flex: 1;
+}
 
-    background:linear-gradient(
-        90deg,
-        var(--pink),
-        #ff8c36
-    );
+.answer-row span {
+    flex-shrink: 0;
+}
 
-    transition:width .35s;
+.feedback {
+    min-height: 24px;
+    margin-top: 9px;
+    font-weight: 850;
+}
+
+.ok {
+    color: var(--green);
+}
+
+.bad {
+    color: var(--red);
 }
 
 /* =========================
-   EQUIPO
+   TARJETAS DE PRUEBAS
    ========================= */
 
-.team-row,
-.answer-row{
-    display:flex;
-    gap:8px;
-    margin-top:10px;
+.tests {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 16px;
 }
 
-/* =========================
-   PRUEBAS
-   ========================= */
-
-.tests{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-
-    margin-top:16px;
+.test {
+    min-height: 96px;
+    padding: 14px;
+    background: white;
+    border: 2px solid #e7edf1;
+    border-radius: 20px;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(20,35,60,.06);
 }
 
-.test{
-    min-height:96px;
-    padding:14px;
-
-    background:white;
-    border:2px solid #e7edf1;
-    border-radius:20px;
-
-    text-align:left;
-    cursor:pointer;
-
-    box-shadow:0 5px 15px rgba(20,35,60,.06);
+.test.done {
+    background: #effbf5;
+    border-color: #9be1c3;
 }
 
-.test.done{
-    background:#effbf5;
-    border-color:#9be1c3;
+.num {
+    font-size: 12px;
+    font-weight: 900;
+    color: #7a8b96;
 }
 
-.num{
-    font-size:12px;
-    font-weight:900;
-    color:#7a8b96;
+.name {
+    margin-top: 5px;
+    font-size: 17px;
+    font-weight: 900;
 }
 
-.name{
-    margin-top:5px;
-    font-size:17px;
-    font-weight:900;
-}
-
-.check{
-    float:right;
-    font-size:21px;
-}
-
-.feedback{
-    min-height:24px;
-    margin-top:9px;
-    font-weight:850;
-}
-
-.ok{
-    color:var(--green);
-}
-
-.bad{
-    color:var(--red);
+.check {
+    float: right;
+    font-size: 21px;
 }
 
 /* =========================
    PANTALLA FINAL
    ========================= */
 
-.finish{
-    text-align:center;
-    padding:28px 12px;
+.finish {
+    text-align: center;
+    padding: 28px 12px;
 }
 
-.finish .emoji{
-    font-size:65px;
+.finish .emoji {
+    font-size: 65px;
 }
 
-.finish h2{
-    margin:8px 0;
-    font-size:31px;
-    color:var(--pink);
+.finish h2 {
+    margin: 8px 0;
+    font-size: 31px;
+    color: var(--pink);
 }
 
-.code{
-    margin:18px 0;
-    padding:12px;
-
-    background:#fff4b8;
-    border-radius:16px;
-
-    font-size:27px;
-    font-weight:1000;
-    letter-spacing:2px;
+.code {
+    margin: 18px 0;
+    padding: 12px;
+    background: #fff4b8;
+    border-radius: 16px;
+    font-size: 27px;
+    font-weight: 1000;
+    letter-spacing: 2px;
 }
 
 /* =========================
    MÓVIL
    ========================= */
 
-@media (max-width:520px){
-
-    .tests{
-        grid-template-columns:1fr 1fr;
+@media (max-width: 520px) {
+    .tests {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .name{
-        font-size:15px;
+    .name {
+        font-size: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     PANTALLA DE ACCESO
+     ========================= -->
+
+<section id="login">
+    <div class="cover"></div>
+
+    <div class="login-card">
+        <p>Para entrar escribe</p>
+
+        <input
+            id="celebrant"
+            class="field"
+            autocomplete="off"
+            placeholder="Nombre de la cumpleañera"
+        >
+
+        <button id="enter" class="primary">
+            Entrar a la gimkana
+        </button>
+
+        <div id="loginError" class="error"></div>
+    </div>
+</section>
+
+<!-- =========================
+     APLICACIÓN PRINCIPAL
+     ========================= -->
+
+<section id="app" class="hidden">
+    <main class="app">
+
+        <div class="top">
+            <div class="topline">
+                <div>
+                    <div class="title">🎂 ¡A jugar!</div>
+                    <div id="teamLabel" class="team">
+                        Equipo sin nombre
+                    </div>
+                </div>
+
+                <div id="counter" class="counter">0/10</div>
+            </div>
+
+            <div class="progress">
+                <div id="bar" class="bar"></div>
+            </div>
+        </div>
+
+        <div id="setup" class="card">
+            <strong>👥 Nombre del equipo</strong>
+
+            <div class="team-row">
+                <input
+                    id="teamInput"
+                    class="field"
+                    maxlength="30"
+                    placeholder="Ej. Los Tigres"
+                >
+
+                <button id="saveTeam" class="small">
+                    Guardar
+                </button>
+            </div>
+        </div>
+
+        <div id="home">
+            <div id="grid" class="tests"></div>
+        </div>
+
+        <div id="test" class="card hidden"></div>
+
+        <div id="finish" class="card hidden"></div>
+
+    </main>
+</section>
+
+<script>
+
+/* =========================
+   CONFIGURACIÓN
+   ========================= */
+
+// Cambia aquí el nombre para entrar.
+const CELEBRANT_NAME = "arabia";
+
+// Lista de las diez pruebas.
+// Las pruebas 2 a 10 siguen siendo demostraciones.
+const tests = [
+    {
+        title: "Las Letras Perdidas",
+        type: "placeholder",
+        text: "Aquí pondremos la primera prueba."
+    },
+    {
+        title: "Mensaje en el Templo",
+        type: "secret",
+        text: "Resuelve las cuatro pistas para descubrir el mensaje..."
+    },
+    {
+        title: "Prueba 3",
+        type: "placeholder",
+        text: "Aquí pondremos la tercera prueba."
+    },
+    {
+        title: "Prueba 4",
+        type: "placeholder",
+        text: "Aquí pondremos la cuarta prueba."
+    },
+    {
+        title: "Prueba 5",
+        type: "placeholder",
+        text: "Aquí pondremos la quinta prueba."
+    },
+    {
+        title: "Prueba 6",
+        type: "placeholder",
+        text: "Aquí pondremos la sexta prueba."
+    },
+    {
+        title: "Prueba 7",
+        type: "placeholder",
+        text: "Aquí pondremos la séptima prueba."
+    },
+    {
+        title: "Prueba 8",
+        type: "placeholder",
+        text: "Aquí pondremos la octava prueba."
+    },
+    {
+        title: "Prueba 9",
+        type: "placeholder",
+        text: "Aquí pondremos la novena prueba."
+    },
+    {
+        title: "Prueba 10",
+        type: "placeholder",
+        text: "Aquí pondremos la décima prueba."
+    }
+];
+
+/* =========================
+   ESTADO Y FUNCIONES GENERALES
+   ========================= */
+
+const state = {
+    completed: JSON.parse(
+        localStorage.getItem('gimkana_completed') || '[]'
+    ),
+    team: localStorage.getItem('gimkana_team') || ''
+};
+
+const $ = id => document.getElementById(id);
+
+const norm = s => s
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase();
+
+function save() {
+    localStorage.setItem(
+        'gimkana_completed',
+        JSON.stringify(state.completed)
+    );
+
+    localStorage.setItem('gimkana_team', state.team);
+}
+
+function progress() {
+    const n = state.completed.length;
+
+    $('counter').textContent = `${n}/10`;
+    $('bar').style.width = `${n * 10}%`;
+
+    $('teamLabel').textContent = state.team
+        ? `Equipo: ${state.team}`
+        : 'Equipo sin nombre';
+
+    if (n === 10) {
+        finish();
     }
 }
 
-</style>
-</head>
-<body>
-<section id="login">
-<div class="cover"></div>
-<div class="login-card">
+function render() {
+    $('grid').innerHTML = tests.map((t, i) => {
+        const done = state.completed.includes(i);
 
-<p>Para entrar escribe</p>
-<input id="celebrant" class="field" autocomplete="off" placeholder="Nombre de la cumpleañera">
-<button id="enter" class="primary">Entrar a la gimkana</button>
-<div id="loginError" class="error"></div>
-</div>
-</section>
-<section id="app" class="hidden">
-<main class="app">
-<div class="top"><div class="topline"><div><div class="title">🎂 ¡A jugar!</div><div id="teamLabel" class="team">Equipo sin nombre</div></div><div id="counter" class="counter">0/10</div></div><div class="progress"><div id="bar" class="bar"></div></div></div>
-<div id="setup" class="card"><strong>👥 Nombre del equipo</strong><div class="team-row"><input id="teamInput" class="field" maxlength="30" placeholder="Ej. Los Tigres"><button id="saveTeam" class="small">Guardar</button></div></div>
-<div id="home"><div id="grid" class="tests"></div></div>
-<div id="test" class="card hidden"></div><div id="finish" class="card hidden"></div>
-</main>
-</section>
-<script>
-// ====== CAMBIA SOLO ESTO PARA PERSONALIZAR EL ACCESO ======
-const CELEBRANT_NAME = "arabia";
+        return `
+            <button
+                class="test ${done ? 'done' : ''}"
+                onclick="openTest(${i})"
+            >
+                <span class="check">
+                    ${done ? '✅' : '🔎'}
+                </span>
 
-// Más adelante sustituiremos estas 10 pruebas por las definitivas.
-const tests=[
- {title:"Prueba 1",type:"placeholder",text:"Aquí pondremos la primera prueba."},
- {title:"Prueba 2",type:"placeholder",text:"Aquí pondremos la segunda prueba."},
- {title:"Prueba 3",type:"placeholder",text:"Aquí pondremos la tercera prueba."},
- {title:"Prueba 4",type:"placeholder",text:"Aquí pondremos la cuarta prueba."},
- {title:"Prueba 5",type:"placeholder",text:"Aquí pondremos la quinta prueba."},
- {title:"Prueba 6",type:"placeholder",text:"Aquí pondremos la sexta prueba."},
- {title:"Prueba 7",type:"placeholder",text:"Aquí pondremos la séptima prueba."},
- {title:"Prueba 8",type:"placeholder",text:"Aquí pondremos la octava prueba."},
- {title:"Prueba 9",type:"placeholder",text:"Aquí pondremos la novena prueba."},
- {title:"Prueba 10",type:"placeholder",text:"Aquí pondremos la décima prueba."}
-];
-const state={completed:JSON.parse(localStorage.getItem('gimkana_completed')||'[]'),team:localStorage.getItem('gimkana_team')||''};
-const $=id=>document.getElementById(id);
-const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
-function save(){localStorage.setItem('gimkana_completed',JSON.stringify(state.completed));localStorage.setItem('gimkana_team',state.team)}
-function progress(){let n=state.completed.length;$('counter').textContent=`${n}/10`;$('bar').style.width=`${n*10}%`;$('teamLabel').textContent=state.team?`Equipo: ${state.team}`:'Equipo sin nombre';if(n===10)finish()}
-function render(){ $('grid').innerHTML=tests.map((t,i)=>{let d=state.completed.includes(i);return `<button class="test ${d?'done':''}" onclick="openTest(${i})"><span class="check">${d?'✅':'🔎'}</span><div class="num">PRUEBA ${i+1}</div><div class="name">${t.title}</div></button>`}).join('') }
-function openTest(i){
+                <div class="num">PRUEBA ${i + 1}</div>
+
+                <div class="name">${t.title}</div>
+            </button>
+        `;
+    }).join('');
+}
+
+/* =========================
+   SELECTOR DE PRUEBAS
+   ========================= */
+
+function openTest(i) {
 
     $('home').classList.add('hidden');
     $('finish').classList.add('hidden');
     $('test').classList.remove('hidden');
 
-    if(i===0){
-
-        $('test').innerHTML=`
-            <h2>🔎 Encuentra los 5 objetos</h2>
-
-            <p>
-                Busca los 5 objetos escondidos por el parque e introduce
-                la palabra escrita en cada uno.
-            </p>
-
-            <div class="answer-row">
-    <input id="obj1" class="field" placeholder="Objeto 1">
-    <span id="ok1"></span>
-</div>
-
-            <div class="answer-row">
-    <input id="obj2" class="field" placeholder="Objeto 2">
-    <span id="ok2"></span>
-</div>
-
-            <div class="answer-row">
-    <input id="obj3" class="field" placeholder="Objeto 3">
-    <span id="ok3"></span>
-</div>
-
-        <div class="answer-row">
-    <input id="obj4" class="field" placeholder="Objeto 4">
-    <span id="ok4"></span>
-</div>
-
-            <div class="answer-row">
-    <input id="obj5" class="field" placeholder="Objeto 5">
-    <span id="ok5"></span>
-</div>
-
-            <button class="small" onclick="checkObjects()">
-                Comprobar
-            </button>
-
-            <div id="objectsFeedback" class="feedback"></div>
-
-            <button class="back" onclick="home()">
-                ← Volver
-            </button>
-        `;
-
+    // PRUEBA 1
+    // Su contenido está en la función prueba1().
+    if (i === 0) {
+        prueba1();
         return;
     }
 
-    let t=tests[i];
+    // PRUEBA 2
+if (i === 1) {
+    prueba2();
+    return;
+}
 
-    $('test').innerHTML=`
+    // RESTO DE PRUEBAS: DEMOSTRACIÓN
+    const t = tests[i];
+
+    $('test').innerHTML = `
         <h2>${t.title}</h2>
+
         <p>${t.text}</p>
 
-        <button class="small" onclick="complete(${i})">
+        <button
+            class="small"
+            onclick="complete(${i})"
+        >
             Marcar como hecha (demo)
         </button>
 
@@ -509,9 +614,121 @@ function openTest(i){
         </button>
     `;
 }
-function complete(i){if(!state.completed.includes(i)){state.completed.push(i);state.completed.sort((a,b)=>a-b);save()}render();progress();if(state.completed.length<10)home()}
-    
-function checkObjects(){
+
+/* ==================================================
+   PRUEBA 1: LAS LETRAS PERDIDAS
+   ==================================================
+   Aquí está todo el contenido visual de la prueba:
+   instrucciones, campos, botones y mensajes.
+   ================================================== */
+
+
+function prueba1() {
+
+    const completada = state.completed.includes(0);
+
+    $('test').innerHTML = `
+        <h2>🎁 Primera prueba</h2>
+
+        <p>
+            ${completada
+                ? '✅ Esta prueba ya está completada.'
+                : 'Completa las cinco pistas para descubrir el mensaje.'
+            }
+        </p>
+
+        <div class="answer-row">
+            <input id="obj1" class="field"
+                placeholder="Pista 1"
+                value="${completada ? 'gracias' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="ok1">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <input id="obj2" class="field"
+                placeholder="Pista 2"
+                value="${completada ? 'por' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="ok2">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <input id="obj3" class="field"
+                placeholder="Pista 3"
+                value="${completada ? 'venir' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="ok3">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <input id="obj4" class="field"
+                placeholder="Pista 4"
+                value="${completada ? 'a mi' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="ok4">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <input id="obj5" class="field"
+                placeholder="Pista 5"
+                value="${completada ? 'cumpleaños' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="ok5">${completada ? '✅' : ''}</span>
+        </div>
+
+        <hr>
+
+        <h3>✨ Mensaje</h3>
+
+        <div
+            style="
+                font-size:24px;
+                font-weight:900;
+                color:#ff2f87;
+                text-align:center;
+                padding:15px 0;
+            "
+        >
+            ${completada
+                ? '🎉 ¡GRACIAS POR VENIR A MI CUMPLEAÑOS! 🎉'
+                : '🔒 🔒 🔒 🔒 🔒'
+            }
+        </div>
+
+        <div id="feedback" class="feedback ${completada ? 'ok' : ''}">
+            ${completada
+                ? '🎉 ¡Prueba completada!'
+                : ''
+            }
+        </div>
+
+        ${
+            completada
+            ? ''
+            : `
+                <button class="small" onclick="comprobarPrueba1()">
+                    Comprobar respuestas
+                </button>
+            `
+        }
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
+
+/* ==================================================
+   PRUEBA 1: COMPROBACIÓN DE LAS RESPUESTAS
+   ==================================================
+   Esta función pertenece a la Prueba 1.
+   Comprueba las cinco palabras y muestra los aciertos.
+   ================================================== */
+
+function comprobarPrueba1() {
 
     const answers = [
         "gracias",
@@ -523,45 +740,413 @@ function checkObjects(){
 
     let correct = 0;
 
-    for(let i=1;i<=5;i++){
+    for (let i = 1; i <= 5; i++) {
 
-        const input = $('obj'+i);
+        const input = $('obj' + i);
+        const feedback = $('ok' + i);
 
-       if(norm(input.value) === norm(answers[i-1])){
+        // Ignorar los campos que ya se acertaron.
+        if (input.disabled) {
+            correct++;
+            continue;
+        }
 
-    input.style.borderColor = '#20a66b';
-    input.style.background = '#effbf5';
-    input.disabled = true;
+        if (norm(input.value) === norm(answers[i - 1])) {
 
-     $('ok'+i).innerHTML = '✅';
+            // RESPUESTA CORRECTA
+            input.style.borderColor = '#20a66b';
+            input.style.background = '#effbf5';
+            input.disabled = true;
 
-    correct++;
+            feedback.innerHTML = '✅';
 
-}else{
+            correct++;
 
+        } else {
+
+            // RESPUESTA INCORRECTA
             input.style.borderColor = '#d64545';
             input.style.background = '#fff5f5';
+
+            feedback.innerHTML = '';
         }
     }
 
-    if(correct === 5){
+    // LAS CINCO RESPUESTAS SON CORRECTAS
+    if (correct === 5) {
 
         $('objectsFeedback').innerHTML =
             '<span class="ok">🎉 ¡Prueba completada!</span>';
 
         complete(0);
 
-    }else{
+    } else {
 
         $('objectsFeedback').innerHTML =
-            `<span class="bad">Te faltan ${5-correct} palabras.</span>`;
+            `<span class="bad">Te faltan ${5 - correct} palabras.</span>`;
     }
 }
-function home(){$('test').classList.add('hidden');$('finish').classList.add('hidden');$('home').classList.remove('hidden')}
-function finish(){$('home').classList.add('hidden');$('test').classList.add('hidden');$('finish').classList.remove('hidden');$('finish').innerHTML=`<div class="finish"><div class="emoji">🏆🎉</div><h2>¡GIMKANA COMPLETADA!</h2><p>Equipo: <strong>${safe(state.team||'sin nombre')}</strong></p><div class="code">¡FIESTA!</div><p>Enséñale esta pantalla a la persona organizadora.</p></div>`}
-function safe(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-$('enter').onclick=()=>{let v=norm($('celebrant').value);if(!v){$('loginError').textContent='Escribe el nombre para continuar.';return}if(v!==norm(CELEBRANT_NAME)){$('loginError').textContent='❌ Ese no es el nombre correcto.';return}$('login').classList.add('hidden');$('app').classList.remove('hidden');$('teamInput').value=state.team;render();progress();if(state.team)$('setup').classList.add('hidden')};
-$('celebrant').onkeydown=e=>{if(e.key==='Enter')$('enter').click()};
-$('saveTeam').onclick=()=>{state.team=$('teamInput').value.trim();save();$('setup').classList.add('hidden');progress()};
+
+
+/* ==================================================
+   PRUEBA 2: EL MENSAJE SECRETO
+   ================================================== */
+
+
+function prueba2() {
+
+    const completada = state.completed.includes(1);
+
+    $('test').innerHTML = `
+        <h2>🔐 El mensaje secreto</h2>
+
+        <p>
+            ${completada
+                ? '✅ Esta prueba ya está completada.'
+                : 'Resuelve las cuatro pistas. Cada respuesta correcta desvelará una palabra.'
+            }
+        </p>
+
+        <div class="answer-row">
+            <input id="p2obj1" class="field"
+                placeholder="Pista 1"
+                value="${completada ? 'gracias' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="p2ok1">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div id="p2word1" class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🔓 Palabra 1: <strong>NOS</strong>' : '🔒 Palabra 1: ???'}
+        </div>
+
+
+        <div class="answer-row">
+            <input id="p2obj2" class="field"
+                placeholder="Pista 2"
+                value="${completada ? 'por' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="p2ok2">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div id="p2word2" class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🔓 Palabra 2: <strong>VEMOS</strong>' : '🔒 Palabra 2: ???'}
+        </div>
+
+
+        <div class="answer-row">
+            <input id="p2obj3" class="field"
+                placeholder="Pista 3"
+                value="${completada ? 'venir' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="p2ok3">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div id="p2word3" class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🔓 Palabra 3: <strong>EN</strong>' : '🔒 Palabra 3: ???'}
+        </div>
+
+
+        <div class="answer-row">
+            <input id="p2obj4" class="field"
+                placeholder="Pista 4"
+                value="${completada ? 'cumpleaños' : ''}"
+                ${completada ? 'disabled' : ''}>
+            <span id="p2ok4">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div id="p2word4" class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🔓 Palabra 4: <strong>McDonald\'s</strong>' : '🔒 Palabra 4: ???'}
+        </div>
+
+
+        <hr>
+
+        <h3>✨ Mensaje descubierto</h3>
+
+        <div id="p2message"
+             style="
+                font-size:24px;
+                font-weight:900;
+                color:#ff2f87;
+                text-align:center;
+                padding:15px 0;
+             ">
+            ${completada
+                ? "NOS · VEMOS · EN · McDonald's"
+                : "_ _ _ _"
+            }
+        </div>
+
+        <div id="p2feedback" class="feedback ${completada ? 'ok' : ''}">
+            ${completada
+                ? '🎉 ¡Mensaje descubierto! Nos vemos en McDonald\'s.'
+                : ''
+            }
+        </div>
+
+        ${
+            completada
+            ? ''
+            : `
+                <button class="small" onclick="comprobarPrueba2()">
+                    Comprobar respuestas
+                </button>
+            `
+        }
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
+
+/* ==================================================
+   PRUEBA 2: RESPUESTAS Y PALABRAS SECRETAS
+   ================================================== */
+
+function comprobarPrueba2() {
+
+    const answers = [
+        "4",
+        "3",
+        "70",
+        "2"
+    ];
+
+    const words = [
+        "NOS",
+        "VEMOS",
+        "EN",
+        "McDonald's"
+    ];
+
+    let correct = 0;
+
+    for (let i = 1; i <= 4; i++) {
+
+        const input = $('p2obj' + i);
+        const icon = $('p2ok' + i);
+        const word = $('p2word' + i);
+
+        // Si ya se acertó, conservar la palabra revelada.
+        if (input.disabled) {
+            correct++;
+            continue;
+        }
+
+        if (norm(input.value) === norm(answers[i - 1])) {
+
+            input.style.borderColor = '#20a66b';
+            input.style.background = '#effbf5';
+            input.disabled = true;
+
+            icon.innerHTML = '✅';
+
+            word.innerHTML =
+                `🔓 Palabra ${i}: <strong>${words[i - 1]}</strong>`;
+
+            word.className = 'feedback ok';
+
+            correct++;
+
+        } else {
+
+            input.style.borderColor = '#d64545';
+            input.style.background = '#fff5f5';
+
+            icon.innerHTML = '❌';
+        }
+    }
+
+    // Mostrar únicamente las palabras que ya se han descubierto.
+    const message = words.map((word, i) => {
+        return $('p2obj' + (i + 1)).disabled
+            ? word
+            : '___';
+    });
+
+    $('p2message').textContent = message.join(' · ');
+
+    
+if (correct === 4) {
+
+    $('p2feedback').innerHTML = `
+        <div style="text-align:center;padding:20px 0;">
+            <div style="font-size:45px;">🎉🍟🎉</div>
+
+            <h2 style="color:#ff2f87;">
+                ¡MENSAJE DESCUBIERTO!
+            </h2>
+
+            <p style="font-size:23px;font-weight:900;">
+                NOS VEMOS EN McDonald's
+            </p>
+
+            <p>
+                ¡Ya sabes dónde continúa la aventura!
+            </p>
+
+            <button class="primary"
+                    onclick="complete(1)">
+                Continuar →
+            </button>
+        </div>
+    `
+
+    $('p2feedback').className = 'feedback ok';
+
+} else {
+
+
+        $('p2feedback').innerHTML =
+            `Te faltan ${4 - correct} respuestas.`;
+
+        $('p2feedback').className = 'feedback bad';
+    }
+}
+
+
+/* =========================
+   COMPLETAR UNA PRUEBA
+   ========================= */
+
+function pruebaCompletada(i) {
+    return state.completed.includes(i);
+}
+
+function complete(i) {
+
+    if (!state.completed.includes(i)) {
+        state.completed.push(i);
+
+        state.completed.sort((a, b) => a - b);
+
+        save();
+    }
+
+    render();
+    progress();
+
+    if (state.completed.length < 10) {
+        home();
+    }
+    
+}
+
+/* =========================
+   VOLVER AL MENÚ
+   ========================= */
+
+function home() {
+
+    $('test').classList.add('hidden');
+    $('finish').classList.add('hidden');
+    $('home').classList.remove('hidden');
+}
+
+/* =========================
+   PANTALLA FINAL
+   ========================= */
+
+function finish() {
+
+    $('home').classList.add('hidden');
+    $('test').classList.add('hidden');
+    $('finish').classList.remove('hidden');
+
+    $('finish').innerHTML = `
+        <div class="finish">
+
+            <div class="emoji">🏆🎉</div>
+
+            <h2>¡GIMKANA COMPLETADA!</h2>
+
+            <p>
+                Equipo:
+                <strong>${safe(state.team || 'sin nombre')}</strong>
+            </p>
+
+            <div class="code">¡FIESTA!</div>
+
+            <p>
+                Enséñale esta pantalla a la persona organizadora.
+            </p>
+
+        </div>
+    `;
+}
+
+/* =========================
+   SEGURIDAD DEL TEXTO
+   ========================= */
+
+function safe(s) {
+    return s.replace(/[&<>"']/g, m => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    }[m]));
+}
+
+/* =========================
+   ACCESO A LA GIMKANA
+   ========================= */
+
+$('enter').onclick = () => {
+
+    const v = norm($('celebrant').value);
+
+    if (!v) {
+        $('loginError').textContent =
+            'Escribe el nombre para continuar.';
+        return;
+    }
+
+    if (v !== norm(CELEBRANT_NAME)) {
+        $('loginError').textContent =
+            '❌ Ese no es el nombre correcto.';
+        return;
+    }
+
+    $('login').classList.add('hidden');
+    $('app').classList.remove('hidden');
+
+    $('teamInput').value = state.team;
+
+    render();
+    progress();
+
+    if (state.team) {
+        $('setup').classList.add('hidden');
+    }
+};
+
+$('celebrant').onkeydown = e => {
+    if (e.key === 'Enter') {
+        $('enter').click();
+    }
+};
+
+/* =========================
+   GUARDAR EL NOMBRE DEL EQUIPO
+   ========================= */
+
+$('saveTeam').onclick = () => {
+
+    state.team = $('teamInput').value.trim();
+
+    save();
+
+    $('setup').classList.add('hidden');
+
+    progress();
+};
+
 </script>
-</body></html>
+</body>
+</html>
+```
