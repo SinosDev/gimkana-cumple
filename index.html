@@ -430,6 +430,13 @@ button, input {
             </div>
         </div>
 
+<div class="card" style="text-align:center;">
+    <button class="back" onclick="reiniciarGimkana()">
+        🔄 Reiniciar gimkana
+    </button>
+</div>
+
+
         <div id="home">
             <div id="grid" class="tests"></div>
         </div>
@@ -775,14 +782,14 @@ function comprobarPrueba1() {
     // LAS CINCO RESPUESTAS SON CORRECTAS
     if (correct === 5) {
 
-        $('objectsFeedback').innerHTML =
+        $('feedback').innerHTML =
             '<span class="ok">🎉 ¡Prueba completada!</span>';
 
         complete(0);
 
     } else {
 
-        $('objectsFeedback').innerHTML =
+        $('feedback').innerHTML =
             `<span class="bad">Te faltan ${5 - correct} palabras.</span>`;
     }
 }
@@ -807,55 +814,31 @@ function prueba2() {
             }
         </p>
 
-        <div class="answer-row">
-            <input id="p2obj1" class="field"
-                placeholder="Pista 1"
-                value="${completada ? 'gracias' : ''}"
-                ${completada ? 'disabled' : ''}>
-            <span id="p2ok1">${completada ? '✅' : ''}</span>
-        </div>
+      
 
         <div id="p2word1" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Palabra 1: <strong>NOS</strong>' : '🔒 Palabra 1: ???'}
+            ${completada ? '🔓 Posición 1: <strong>NOS</strong>' : '🔒 Posición 1: Torres en el templo'}
         </div>
 
 
-        <div class="answer-row">
-            <input id="p2obj2" class="field"
-                placeholder="Pista 2"
-                value="${completada ? 'por' : ''}"
-                ${completada ? 'disabled' : ''}>
-            <span id="p2ok2">${completada ? '✅' : ''}</span>
-        </div>
+   
 
         <div id="p2word2" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Palabra 2: <strong>VEMOS</strong>' : '🔒 Palabra 2: ???'}
+            ${completada ? '🔓 Posición 2: <strong>VEMOS</strong>' : '🔒 Posición 2: Accesos al templo'}
         </div>
 
 
-        <div class="answer-row">
-            <input id="p2obj3" class="field"
-                placeholder="Pista 3"
-                value="${completada ? 'venir' : ''}"
-                ${completada ? 'disabled' : ''}>
-            <span id="p2ok3">${completada ? '✅' : ''}</span>
-        </div>
+      
 
         <div id="p2word3" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Palabra 3: <strong>EN</strong>' : '🔒 Palabra 3: ???'}
+            ${completada ? '🔓 Posición 3: <strong>EN</strong>' : '🔒 Posición 3: Años que tardaron en construir'}
         </div>
 
 
-        <div class="answer-row">
-            <input id="p2obj4" class="field"
-                placeholder="Pista 4"
-                value="${completada ? 'cumpleaños' : ''}"
-                ${completada ? 'disabled' : ''}>
-            <span id="p2ok4">${completada ? '✅' : ''}</span>
-        </div>
+       
 
         <div id="p2word4" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Palabra 4: <strong>McDonald\'s</strong>' : '🔒 Palabra 4: ???'}
+            ${completada ? '🔓 Posición 4: <strong>McDonald\'s</strong>' : '🔒 Posición 4: Rosetones'}
         </div>
 
 
@@ -1034,6 +1017,44 @@ function complete(i) {
     }
     
 }
+
+
+function reiniciarGimkana() {
+
+    const confirmar = confirm(
+        '¿Seguro que quieres reiniciar la gimkana? Se borrarán las pruebas completadas y el nombre del equipo.'
+    );
+
+    if (!confirmar) return;
+
+    // Borrar los datos guardados
+    localStorage.removeItem('gimkana_completed');
+    localStorage.removeItem('gimkana_team');
+
+    // Restablecer el estado en memoria
+    state.completed = [];
+    state.team = '';
+
+    // Limpiar el campo del equipo
+    $('teamInput').value = '';
+
+    // Volver a mostrar la configuración inicial
+    $('setup').classList.remove('hidden');
+
+    // Actualizar la pantalla
+    render();
+    progress();
+    home();
+
+    // Mostrar de nuevo la pantalla de acceso
+    $('app').classList.add('hidden');
+    $('login').classList.remove('hidden');
+
+    // Limpiar el nombre introducido y los posibles errores
+    $('celebrant').value = '';
+    $('loginError').textContent = '';
+}
+
 
 /* =========================
    VOLVER AL MENÚ
