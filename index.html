@@ -490,9 +490,9 @@ const tests = [
         text: "Resuelve las cuatro pistas para descubrir el mensaje..."
     },
     {
-        title: "Prueba 3",
-        type: "placeholder",
-        text: "Aquí pondremos la tercera prueba."
+        title: "El Objeto Infiltrado",
+        type: "intruso",
+        text: "Busca el objeto que desentona y escribe su nombre."
     },
     {
         title: "Prueba 4",
@@ -618,6 +618,13 @@ if (i === 1) {
     return;
 }
 
+    // PRUEBA 3: EL OBJETO INTRUSO
+    if (i === 2) {
+        prueba3();
+        return;
+    }
+
+
     // RESTO DE PRUEBAS: DEMOSTRACIÓN
     const t = tests[i];
 
@@ -654,13 +661,21 @@ function prueba1() {
     const completada = state.completed.includes(0);
 
     $('test').innerHTML = `
-        <h2>🎁 Primera prueba</h2>
+        <h2>🎁 MISIÓN SECRETA: EL MENSAJE ESCONDIDO</h2>
 
         <p>
             ${completada
                 ? '✅ Esta prueba ya está completada.'
-                : 'Completa las cinco pistas para descubrir el mensaje.'
+                : 'Exploradores, en este parque se ocultan cinco letras misteriosas.'
+                
             }
+        <p>
+                Para encontrarlas, tendréis las fotografías que os darán una pista de donde se encuentran.
+                Pero hay un secreto más...
+        <p>
+            ¡Cada letra esconde una palabra en su parte trasera!
+            Cuando la encontreis escribidla en la posición correcta y descubriréis el mensaje.
+
         </p>
 
         <div class="answer-row">
@@ -809,18 +824,42 @@ function comprobarPrueba1() {
     }
 
     // LAS CINCO RESPUESTAS SON CORRECTAS
-    if (correct === 5) {
+    
+if (correct === 5) {
 
-        $('feedback').innerHTML =
-            '<span class="ok">🎉 ¡Prueba completada!</span>';
-
-        complete(0);
-
-    } else {
-
-        $('feedback').innerHTML =
-            `<span class="bad">Te faltan ${5 - correct} palabras.</span>`;
+    // Guardar la prueba como completada sin salir de ella.
+    if (!state.completed.includes(0)) {
+        state.completed.push(0);
+        state.completed.sort((a, b) => a - b);
+        save();
     }
+
+    // Actualizar el contador y la barra de progreso.
+    progress();
+    render();
+
+    // Mostrar el mensaje secreto y mantener la prueba abierta.
+    $('feedback').innerHTML = `
+        <div style="text-align:center; padding:15px 0;">
+            <div style="font-size:45px;">🎉🎁🎉</div>
+            <h2 style="color:#ff2f87;">
+                ¡MENSAJE DESCUBIERTO!
+            </h2>
+            <p style="font-size:22px; font-weight:900;">
+                ¡GRACIAS POR VENIR A MI CUMPLEAÑOS!
+            </p>
+            <p>¡Has superado la primera prueba!</p>
+        </div>
+    `;
+
+    $('feedback').className = 'feedback ok';
+
+} else {
+
+    $('feedback').innerHTML =
+        `<span class="bad">Te faltan ${5 - correct} palabras.</span>`;
+}
+
 }
 
 
@@ -839,8 +878,15 @@ function prueba2() {
         <p>
             ${completada
                 ? '✅ Esta prueba ya está completada.'
-                : 'Acude a la iglesia de San Juan Bautista. Cada respuesta correcta desvelará una palabra.'
+                : 'Esta aventura os conduce ahora a la iglesia de San Juan Bautista.'
             }
+         <p>
+            Vuestra misión será descubir los elementos que se os piden de la lista y contar.
+            Cada número descifrará una palabra del mensaje.
+         <p>
+                Observad con atención, contad con presición y aseguraos de que todo el equipo está de acuerdo.
+         <p>
+            ¿Cuántos secretos conseguiréis descubrir en esta construcción?
         </p>
 
         <div class="answer-row">
@@ -1043,6 +1089,53 @@ if (correct === 4) {
     }
 }
 
+function prueba3() {
+    const completada = state.completed.includes(2);
+
+    $('test').innerHTML = `
+        <h2>🔎 EL OBJETO INFILTRADO</h2>
+
+        <p>
+            Exploradores, vuestra próxima pista os conduce a un lugar muy especial...
+        <p>
+            Sé que en el cole teneis una guarida, pero ¿Sabíais que en Arucas hay otra?.
+            Está frente al parque de Las Flores, ¡Estad atentos!   
+         <p>
+            Ahí, en su escaparate, tendréis que buscar un objeto que no debería estar ahí.
+            Observad con atención e investigad cada detalle.
+         <p>
+            Cuando lo encontréis escribid su nombre.       
+        </p>
+
+        <div class="answer-row">
+            <input
+                id="respuestaIntruso"
+                class="field"
+                placeholder="Nombre del objeto"
+                ${completada ? 'disabled' : ''}
+            >
+        </div>
+
+        <div id="feedbackIntruso"
+             class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🎉 ¡Prueba completada!' : ''}
+        </div>
+
+        ${completada ? '' : `
+            <button class="small" onclick="comprobarIntruso()">
+                Comprobar respuesta
+            </button>
+        `}
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
+
+
 
 /* =========================
    COMPLETAR UNA PRUEBA
@@ -1219,6 +1312,24 @@ $('saveTeam').onclick = () => {
 
     progress();
 };
+
+
+function comprobarIntruso() {
+    const respuesta = norm($('respuestaIntruso').value);
+    const correcta = "paraguas"; // Cambia aquí la respuesta correcta.
+    const feedback = $('feedbackIntruso');
+
+    if (respuesta === correcta) {
+        feedback.textContent = "🎉 ¡Correcto! Has superado la prueba.";
+        feedback.className = "feedback ok";
+
+        complete(2);
+    } else {
+        feedback.textContent = "❌ No es correcto. ¡Inténtalo de nuevo!";
+        feedback.className = "feedback bad";
+    }
+};
+
 
 </script>
 </body>
