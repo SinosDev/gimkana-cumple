@@ -359,6 +359,25 @@ button, input {
         font-size: 15px;
     }
 }
+
+
+/* GALERÍA DE FOTOS DE LA PRUEBA 1 */
+.galeria-prueba1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.galeria-prueba1 img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    object-fit: contain;
+}
+
+
 </style>
 </head>
 
@@ -724,7 +743,17 @@ function prueba1() {
 
         <button class="back" onclick="home()">
             ← Volver
-        </button>
+        </button> 
+
+
+<div class="galeria-prueba1">
+    <img src="zona1.jpg" alt="Foto 1">
+    <img src="zona2.jpg" alt="Foto 2">
+    <img src="zona3.jpg" alt="Foto 3">
+    <img src="zona4.jpg" alt="Foto 4">
+    <img src="zona5.jpg" alt="Foto 5">
+</div>
+
     `;
 }
 
@@ -810,14 +839,14 @@ function prueba2() {
         <p>
             ${completada
                 ? '✅ Esta prueba ya está completada.'
-                : 'Resuelve las cuatro pistas. Cada respuesta correcta desvelará una palabra.'
+                : 'Acude a la iglesia de San Juan Bautista. Cada respuesta correcta desvelará una palabra.'
             }
         </p>
 
         <div class="answer-row">
             <input id="p2obj1" class="field"
-                placeholder="Pista 1"
-                value="${completada ? 'gracias' : ''}"
+                placeholder="Número"
+                value="${completada ? '4' : ''}"
                 ${completada ? 'disabled' : ''}>
             <span id="p2ok1">${completada ? '✅' : ''}</span>
         </div>
@@ -829,8 +858,8 @@ function prueba2() {
 
         <div class="answer-row">
             <input id="p2obj2" class="field"
-                placeholder="Pista 2"
-                value="${completada ? 'por' : ''}"
+                placeholder="Número"
+                value="${completada ? '3' : ''}"
                 ${completada ? 'disabled' : ''}>
             <span id="p2ok2">${completada ? '✅' : ''}</span>
         </div>
@@ -842,8 +871,8 @@ function prueba2() {
 
         <div class="answer-row">
             <input id="p2obj3" class="field"
-                placeholder="Pista 3"
-                value="${completada ? 'venir' : ''}"
+                placeholder="Número"
+                value="${completada ? '70' : ''}"
                 ${completada ? 'disabled' : ''}>
             <span id="p2ok3">${completada ? '✅' : ''}</span>
         </div>
@@ -855,8 +884,8 @@ function prueba2() {
 
         <div class="answer-row">
             <input id="p2obj4" class="field"
-                placeholder="Pista 4"
-                value="${completada ? 'cumpleaños' : ''}"
+                placeholder="Número"
+                value="${completada ? '2' : ''}"
                 ${completada ? 'disabled' : ''}>
             <span id="p2ok4">${completada ? '✅' : ''}</span>
         </div>
