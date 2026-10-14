@@ -526,9 +526,9 @@ const tests = [
         text: "Encuentra el edificio."
     },
     {
-        title: "Prueba 8",
+        title: "El Arte Escondido",
         type: "placeholder",
-        text: "Aquí pondremos la octava prueba."
+        text: "la de las esculturas"
     },
     {
         title: "Prueba 9",
@@ -667,6 +667,12 @@ function openTest(i) {
         prueba7();
         return;
     }
+
+    // PRUEBA 8//
+    if (i === 7) {
+    prueba8();
+    return;
+}
 
 
 
@@ -1574,6 +1580,190 @@ function comprobarPrueba7() {
         feedback.textContent =
             "❌ Alguna respuesta no es correcta. ¡Intentadlo de nuevo!";
         feedback.className = "feedback bad";
+    }
+}
+
+function prueba8() {
+
+    const completada = state.completed.includes(7);
+
+    $('test').innerHTML = `
+        <h2>🎨 EL ARTE ESCONDIDO</h2>
+
+        <p>
+            ${completada
+                ? '✅ Esta prueba ya está completada.'
+                : 'Por las calles de nuestra ciudad se esconden obras de arte que muchas veces pasan desapercibidas'
+            }
+        </p>
+
+        <p>Vuestra misión será seguir las instrucciones, encontrar las esculturas, observarlas con atención
+            y escribir el nombre de cada obra.
+            <p>
+            ¿Seréis capaces de encontrarlas todas?
+            
+            </p>
+
+        <div class="answer-row">
+            <div style="flex:1;">
+                <p>🔎 1: Situados a comienzo de la calle León y Castillo, en la plaza de la constitución
+                    vamos a caminar por ella hasta llegar a una bifurcación. Ahí encontrarás la primera escultura.</p>
+                <input id="obj8_1" class="field"
+                    placeholder="Respuesta 1"
+                    value="${completada ? 'respuesta1' : ''}"
+                    ${completada ? 'disabled' : ''}>
+            </div>
+            <span id="ok8_1">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <div style="flex:1;">
+                <p>🏰 2: Si seguimos recto llegamos a una plaza y un parque, busca y escribe el nombre de:</p><p>🗝️ Un Busto</p>
+                <input id="obj8_2" class="field"
+                    placeholder="Un Busto"
+                    value="${completada ? 'respuesta2' : ''}"
+                    ${completada ? 'disabled' : ''}>
+            </div>
+            <span id="ok8_2">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <div style="flex:1;">
+                <p>⚱️ Un monolito</p>
+                <input id="obj8_3" class="field"
+                    placeholder="Un Monolito"
+                    value="${completada ? 'respuesta3' : ''}"
+                    ${completada ? 'disabled' : ''}>
+            </div>
+            <span id="ok8_3">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <div style="flex:1;">
+                <p>🎨 Un Mural</p>
+                <input id="obj8_4" class="field"
+                    placeholder="Un Mural"
+                    value="${completada ? 'respuesta4' : ''}"
+                    ${completada ? 'disabled' : ''}>
+            </div>
+            <span id="ok8_4">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <div style="flex:1;">
+                <p>🗿 Una Estatua</p>
+                <input id="obj8_5" class="field"
+                    placeholder="Una Estatua"
+                    value="${completada ? 'respuesta5' : ''}"
+                    ${completada ? 'disabled' : ''}>
+            </div>
+            <span id="ok8_5">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div class="answer-row">
+            <div style="flex:1;">
+                <p>🏴‍☠️ 3: Además, hay un conjunto de esculturas de metal. ¿Cuántas hay?</p>
+                <input id="obj8_6" class="field"
+                    placeholder="Respuesta 6"
+                    value="${completada ? 'respuesta6' : ''}"
+                    ${completada ? 'disabled' : ''}>
+            </div>
+            <span id="ok8_6">${completada ? '✅' : ''}</span>
+        </div>
+
+        <div id="feedbackPrueba8"
+             class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🎉 ¡Prueba completada!' : ''}
+        </div>
+
+        ${completada ? '' : `
+            <button class="small" onclick="comprobarPrueba8()">
+                Comprobar respuestas
+            </button>
+        `}
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
+
+function comprobarPrueba8() {
+
+   const answers = [
+    ["poeta domingo rivero", "domingo rivero", "poeta"],
+    ["pirata", "el pirata"],
+    ["arucas", "ciudad de arucas"],
+    ["ron", "ron canario", "ron de canarias"],
+    ["barco", "el barco"],
+    ["4", "cuatro"]
+];
+
+    let correct = 0;
+
+    for (let i = 1; i <= 6; i++) {
+
+        const input = $('obj8_' + i);
+        const feedback = $('ok8_' + i);
+
+        if (input.disabled) {
+            correct++;
+            continue;
+        }
+
+        if (
+    answers[i - 1].some(respuesta =>
+        norm(input.value) === norm(respuesta)
+    )
+) {
+
+            input.style.borderColor = '#20a66b';
+            input.style.background = '#effbf5';
+            input.disabled = true;
+
+            feedback.innerHTML = '✅';
+            correct++;
+
+        } else {
+
+            input.style.borderColor = '#d64545';
+            input.style.background = '#fff5f5';
+
+            feedback.innerHTML = '';
+        }
+    }
+
+    const feedback = $('feedbackPrueba8');
+
+    if (correct === 6) {
+
+        if (!state.completed.includes(7)) {
+            state.completed.push(7);
+            state.completed.sort((a, b) => a - b);
+            save();
+        }
+
+        progress();
+        render();
+
+        feedback.innerHTML = `
+            <div style="text-align:center; padding:15px 0;">
+                <div style="font-size:45px;">🎉🏴‍☠️🎉</div>
+                <h2>¡PRUEBA SUPERADA!</h2>
+                <p>¡Habéis resuelto las seis pistas!</p>
+            </div>
+        `;
+
+        feedback.className = 'feedback ok';
+
+    } else {
+
+        feedback.innerHTML =
+            `<span class="bad">Os faltan ${6 - correct} respuestas correctas.</span>`;
+
+        feedback.className = 'feedback';
     }
 }
 
