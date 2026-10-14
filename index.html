@@ -378,6 +378,17 @@ button, input {
 }
 
 
+.field.correcta {
+    border: 2px solid #22a06b;
+    background-color: #e8f8ef;
+}
+
+.field.incorrecta {
+    border: 2px solid #dc3545;
+    background-color: #fff0f0;
+}
+
+
 </style>
 </head>
 
@@ -495,24 +506,24 @@ const tests = [
         text: "Busca el objeto que desentona y escribe su nombre."
     },
     {
-        title: "Prueba 4",
-        type: "placeholder",
-        text: "Aquí pondremos la cuarta prueba."
+        title: "El Corazón de Arucas",
+        type: "geroglifico",
+        text: "Saca un selfie con la solución."
     },
     {
-        title: "Prueba 5",
+        title: "Ojo de Lince",
         type: "placeholder",
-        text: "Aquí pondremos la quinta prueba."
+        text: "Encuentra las 5 diferencias."
     },
     {
-        title: "Prueba 6",
+        title: "La de Jack Sparrow",
         type: "placeholder",
-        text: "Aquí pondremos la sexta prueba."
+        text: "Busca la fábrica."
     },
     {
-        title: "Prueba 7",
+        title: "El Edificio Desconocido",
         type: "placeholder",
-        text: "Aquí pondremos la séptima prueba."
+        text: "Encuentra el edificio."
     },
     {
         title: "Prueba 8",
@@ -574,8 +585,14 @@ function progress() {
     }
 }
 
+
 function render() {
-    $('grid').innerHTML = tests.map((t, i) => {
+    const orden = tests
+        .map((t, i) => i)
+        .sort(() => Math.random() - 0.5);
+
+    $('grid').innerHTML = orden.map(i => {
+        const t = tests[i];
         const done = state.completed.includes(i);
 
         return `
@@ -587,13 +604,14 @@ function render() {
                     ${done ? '✅' : '🔎'}
                 </span>
 
-                <div class="num">PRUEBA ${i + 1}</div>
+                <div class="num">PRUEBA</div>
 
                 <div class="name">${t.title}</div>
             </button>
         `;
     }).join('');
 }
+
 
 /* =========================
    SELECTOR DE PRUEBAS
@@ -613,16 +631,45 @@ function openTest(i) {
     }
 
     // PRUEBA 2
-if (i === 1) {
+    if (i === 1) {
     prueba2();
     return;
-}
+    }
 
     // PRUEBA 3: EL OBJETO INTRUSO
     if (i === 2) {
         prueba3();
         return;
     }
+
+    // PRUEBA 4: A DE ARUCAS    
+    if (i === 3) {
+    prueba4();
+    return;
+}
+
+
+    // PRUEBA 5: ENCUENTRA LAS 5 DIFERENCIAS
+    if (i === 4) {
+        prueba5();
+        return;
+    }
+
+     // PRUEBA 6: RON
+    if (i === 5) {
+        prueba6();
+        return;
+    }
+
+
+    // PRUEBA 7: TEST DE DOS PREGUNTAS
+    if (i === 6) {
+        prueba7();
+        return;
+    }
+
+
+
 
 
     // RESTO DE PRUEBAS: DEMOSTRACIÓN
@@ -1089,6 +1136,7 @@ if (correct === 4) {
     }
 }
 
+// PRUEBA 3 //
 function prueba3() {
     const completada = state.completed.includes(2);
 
@@ -1134,6 +1182,401 @@ function prueba3() {
         </button>
     `;
 }
+
+// PRUEBA 4 //
+
+
+function prueba4() {
+    const completada = state.completed.includes(3);
+
+    $('test').innerHTML = `
+        <h2>❤️ EL CORAZÓN DE ARUCAS</h2>
+
+        <p>
+            La cumpleañera de nuestra aventura tiene una letra muy especial.
+        </p>
+
+        <p>
+            Encuentra el logo de Arucas y busca dos letras que se unen formando un corazón.
+        </p>
+
+        <p>
+            ¿Qué dos letras son? Escríbelas. Hazte un selfie y envíamelo.
+        </p>
+
+        <div class="answer-row">
+            <input
+                id="respuestaPrueba4"
+                class="field"
+                placeholder="Primera letra"
+                ${completada ? 'disabled' : ''}
+            >
+        </div>
+
+        <div class="answer-row">
+            <input
+                id="respuestaPrueba4b"
+                class="field"
+                placeholder="Segunda letra"
+                ${completada ? 'disabled' : ''}
+            >
+        </div>
+
+        <div id="feedbackPrueba4"
+             class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🎉 ¡Prueba completada!' : ''}
+        </div>
+
+        ${completada ? '' : `
+            <button class="small" onclick="comprobarPrueba4()">
+                Comprobar respuestas
+            </button>
+        `}
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
+
+
+
+
+function comprobarPrueba4() {
+    const respuesta1 = norm($('respuestaPrueba4').value);
+    const respuesta2 = norm($('respuestaPrueba4b').value);
+
+    const correcta1 = norm("c");
+    const correcta2 = norm("a");
+
+    const feedback = $('feedbackPrueba4');
+
+    if (respuesta1 === correcta1 && respuesta2 === correcta2) {
+        feedback.textContent =
+            "🎉 ¡Correcto! Habéis superado la prueba.";
+        feedback.className = "feedback ok";
+
+        complete(3);
+    } else {
+        feedback.textContent =
+            "❌ Alguna respuesta no es correcta. ¡Intentadlo de nuevo!";
+        feedback.className = "feedback bad";
+    }
+}
+
+
+
+function prueba5() {
+    const completada = state.completed.includes(4);
+
+    $('test').innerHTML = `
+        <h2>🔍 Encuentra las 5 diferencias</h2>
+
+        <p>
+            Hay un lugar donde las voces se escuchan y no vemos a quien habla, 
+            suena la música y se cuentan noticias. Tendréis que encontrar ese lugar.
+
+        <p>   
+            Una vez allí encontraréis la imagen en la que debéis encontrar las cinco diferencias.
+            (Identifica la diferencia con una sola palabra).
+        </p>
+
+        <img
+            src="./diferencias.jpg"
+            alt="Imagen para encontrar las cinco diferencias"
+            style="width:100%; max-width:600px; border-radius:12px; margin:12px auto; display:block;"
+        >
+
+        ${[1, 2, 3, 4, 5].map(n => `
+            <div class="answer-row">
+                <input
+                    id="diferencia${n}"
+                    class="field"
+                    placeholder="Diferencia ${n}: una palabra"
+                    ${completada ? 'disabled' : ''}
+                >
+            </div>
+        `).join('')}
+
+        <div id="feedbackPrueba5"
+             class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🎉 ¡Prueba completada!' : ''}
+        </div>
+
+        ${completada ? '' : `
+            <button class="small" onclick="comprobarPrueba5()">
+                Comprobar respuestas
+            </button>
+        `}
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
+
+
+
+
+function comprobarPrueba5() {
+    const respuestasValidas = [
+        ["maceta", "tiesto", "jardinera"],
+        ["banco", "asiento"],
+        ["cartel", "letrero", "rotulo"],
+        ["ventana", "ventanal"],
+        ["puerta", "porton"]
+    ];
+
+    const feedback = $('feedbackPrueba5');
+
+    const respuestas = [1, 2, 3, 4, 5].map(n =>
+        norm($('diferencia' + n).value)
+    );
+
+    // Reiniciar los colores.
+    for (let n = 1; n <= 5; n++) {
+        $('diferencia' + n).classList.remove(
+            'correcta', 'incorrecta'
+        );
+    }
+
+    if (respuestas.some(r => !r)) {
+        feedback.textContent =
+            "⚠️ Completad los cinco campos. Las respuestas correctas se marcarán en verde.";
+        feedback.className = "feedback bad";
+    }
+
+    // Identificar qué diferencia corresponde a cada respuesta.
+    const grupos = respuestasValidas.map(grupo =>
+        grupo.map(norm)
+    );
+
+    const indices = respuestas.map(r =>
+        r ? grupos.findIndex(grupo => grupo.includes(r)) : -1
+    );
+
+    // Detectar diferencias repetidas, incluso usando sinónimos.
+    const cantidades = {};
+
+    indices.forEach(i => {
+        if (i !== -1) {
+            cantidades[i] = (cantidades[i] || 0) + 1;
+        }
+    });
+
+    let aciertos = 0;
+
+    respuestas.forEach((respuesta, i) => {
+        const campo = $('diferencia' + (i + 1));
+        const diferencia = indices[i];
+
+        const correcta =
+            respuesta !== '' &&
+            diferencia !== -1 &&
+            cantidades[diferencia] === 1;
+
+        if (correcta) {
+            campo.classList.add('correcta');
+            aciertos++;
+        } else {
+            campo.classList.add('incorrecta');
+        }
+    });
+
+    if (aciertos === 5) {
+        feedback.textContent =
+            "🎉 ¡Perfecto! Habéis encontrado las cinco diferencias.";
+        feedback.className = "feedback ok";
+        complete(4);
+    } else {
+        feedback.textContent =
+            ` lleváis ${aciertos} de 5 diferencias correctas. ¡Corregid las marcadas en rojo!`;
+        feedback.className = "feedback bad";
+    }
+}
+
+
+
+function prueba6() {
+    const completada = state.completed.includes(5);
+
+    $('test').innerHTML = `
+        <h2>🏴‍☠️ La de Jack Sparrow</h2>
+
+        <p>
+            En Arucas hay un lugar muy especial donde se fabrica
+            una bebida que los piratas conocen bien.
+            ¿Sabes cuál es?
+        </p>
+
+        <p>
+            Encuentra la fábrica, escribe su nombre y hazte una
+            foto desde donde se vea el nombre de su torre.
+        </p>
+
+        <div class="answer-row">
+            <input
+                id="respuestaPrueba6"
+                class="field"
+                placeholder="Nombre de la fábrica"
+                ${completada ? 'disabled' : ''}
+            >
+        </div>
+
+        <div id="feedbackPrueba6"
+             class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🎉 ¡Prueba completada!' : ''}
+        </div>
+
+        ${completada ? '' : `
+            <button class="small" onclick="comprobarPrueba6()">
+                Comprobar respuesta
+            </button>
+        `}
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
+
+
+function comprobarPrueba6() {
+    const respuesta = norm($('respuestaPrueba6').value);
+    const correcta = norm("Arehucas");
+    const feedback = $('feedbackPrueba6');
+
+    if (respuesta === correcta) {
+        feedback.textContent =
+            "🎉 ¡Correcto! Ahora haced la foto junto a la torre.";
+        feedback.className = "feedback ok";
+
+        complete(5);
+    } else {
+        feedback.textContent =
+            "❌ Ese no es el nombre correcto. ¡Intentadlo de nuevo!";
+        feedback.className = "feedback bad";
+    }
+}
+
+
+function prueba7() {
+    const completada = state.completed.includes(6);
+
+    $('test').innerHTML = `
+        <h2>🏛️ EL EDIFICIO DESCONOCIDO</h2>
+
+        <p>Para superar esta misión tendréis que encontrar un edificio muy importante de nuestra ciudad.
+        Allí se toman desiciones para mejorar el municipio y trabajan las personas que lo gobiernan.
+        <p>
+            Aquí van algunas pistas:
+            <p>
+            🧩 Delande del edificio hay una plaza.<br>
+               🧩 En la parte superior de la fachada hay unos números pero tu los verás como letras.<br>
+                🧩 Si miráis hacia lo alto encontraréis cinco banderas.<br>
+               🧩 Cuando lo encuentres responde a las siguientes preguntas.
+        
+        </p>
+
+        <h3>Pregunta 1</h3>
+        <p>¿En que posición de izquierda a derecha está la bandera de Canarias?</p>
+
+        <label>
+            <input type="radio" name="pregunta7a" value="a"
+                ${completada ? 'disabled' : ''}>
+            Quinta
+        </label><br>
+
+        <label>
+            <input type="radio" name="pregunta7a" value="b"
+                ${completada ? 'disabled' : ''}>
+            Primera
+        </label><br>
+
+        <label>
+            <input type="radio" name="pregunta7a" value="c"
+                ${completada ? 'disabled' : ''}>
+            Segunda
+        </label>
+
+        <h3>Pregunta 2</h3>
+        <p>¿Cómo se llama este edificio?</p>
+
+        <label>
+            <input type="radio" name="pregunta7b" value="a"
+                ${completada ? 'disabled' : ''}>
+            Usos Múltiples
+        </label><br>
+
+        <label>
+            <input type="radio" name="pregunta7b" value="b"
+                ${completada ? 'disabled' : ''}>
+            Ayuntamiento
+        </label><br>
+
+        <label>
+            <input type="radio" name="pregunta7b" value="c"
+                ${completada ? 'disabled' : ''}>
+            Fondo de Bikini
+        </label>
+
+        <div id="feedbackPrueba7"
+             class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🎉 ¡Prueba completada!' : ''}
+        </div>
+
+        ${completada ? '' : `
+            <button class="small" onclick="comprobarPrueba7()">
+                Comprobar respuestas
+            </button>
+        `}
+
+        <br>
+
+        <button class="back" onclick="home()">
+            ← Volver
+        </button>
+    `;
+}
+
+
+function comprobarPrueba7() {
+    const p1 = document.querySelector(
+        'input[name="pregunta7a"]:checked'
+    );
+
+    const p2 = document.querySelector(
+        'input[name="pregunta7b"]:checked'
+    );
+
+    const feedback = $('feedbackPrueba7');
+
+    if (!p1 || !p2) {
+        feedback.textContent =
+            "⚠️ Debéis responder a las dos preguntas.";
+        feedback.className = "feedback bad";
+        return;
+    }
+
+    if (p1.value === "c" && p2.value === "b") {
+        feedback.textContent =
+            "🎉 ¡Las dos respuestas son correctas!";
+        feedback.className = "feedback ok";
+
+        complete(6);
+    } else {
+        feedback.textContent =
+            "❌ Alguna respuesta no es correcta. ¡Intentadlo de nuevo!";
+        feedback.className = "feedback bad";
+    }
+}
+
 
 
 
