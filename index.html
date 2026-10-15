@@ -942,6 +942,11 @@ function prueba2() {
             ¿Cuántos secretos conseguiréis descubrir en esta construcción?
         </p>
 
+
+         <div id="p2word1" class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🔓 Posición 1: <strong>NOS</strong>' : '🔒 Posición 1: Torres en el templo'}
+        </div>
+
         <div class="answer-row">
             <input id="p2obj1" class="field"
                 placeholder="Número"
@@ -950,8 +955,8 @@ function prueba2() {
             <span id="p2ok1">${completada ? '✅' : ''}</span>
         </div>
 
-        <div id="p2word1" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Posición 1: <strong>NOS</strong>' : '🔒 Posición 1: Torres en el templo'}
+       <div id="p2word2" class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🔓 Posición 2: <strong>VEMOS</strong>' : '🔒 Posición 2: Accesos al templo'}
         </div>
 
 
@@ -963,8 +968,8 @@ function prueba2() {
             <span id="p2ok2">${completada ? '✅' : ''}</span>
         </div>
 
-        <div id="p2word2" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Posición 2: <strong>VEMOS</strong>' : '🔒 Posición 2: Accesos al templo'}
+        <div id="p2word3" class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🔓 Posición 3: <strong>EN</strong>' : '🔒 Posición 3: Años que tardaron en construir'}
         </div>
 
 
@@ -976,8 +981,8 @@ function prueba2() {
             <span id="p2ok3">${completada ? '✅' : ''}</span>
         </div>
 
-        <div id="p2word3" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Posición 3: <strong>EN</strong>' : '🔒 Posición 3: Años que tardaron en construir'}
+        <div id="p2word4" class="feedback ${completada ? 'ok' : ''}">
+            ${completada ? '🔓 Posición 4: <strong>McDonald\'s</strong>' : '🔒 Posición 4: Rosetones'}
         </div>
 
 
@@ -989,11 +994,7 @@ function prueba2() {
             <span id="p2ok4">${completada ? '✅' : ''}</span>
         </div>
 
-        <div id="p2word4" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Posición 4: <strong>McDonald\'s</strong>' : '🔒 Posición 4: Rosetones'}
-        </div>
-
-
+        
         <hr>
 
         <h3>✨ Mensaje descubierto</h3>
@@ -1199,7 +1200,7 @@ function prueba4() {
         <h2>❤️ EL CORAZÓN DE ARUCAS</h2>
 
         <p>
-            La cumpleañera de nuestra aventura tiene una letra muy especial.
+            La cumpleañera de nuestra aventura tiene una letra muy especial en su nombre.
         </p>
 
         <p>
@@ -1483,7 +1484,7 @@ function prueba7() {
         <p>
             Aquí van algunas pistas:
             <p>
-            🧩 Delande del edificio hay una plaza.<br>
+            🧩 Delante del edificio hay una plaza.<br>
                🧩 En la parte superior de la fachada hay unos números pero tu los verás como letras.<br>
                 🧩 Si miráis hacia lo alto encontraréis cinco banderas.<br>
                🧩 Cuando lo encuentres responde a las siguientes preguntas.
@@ -1593,82 +1594,94 @@ function prueba8() {
         <p>
             ${completada
                 ? '✅ Esta prueba ya está completada.'
-                : 'Por las calles de nuestra ciudad se esconden obras de arte que muchas veces pasan desapercibidas'
+                : 'Por las calles de nuestra ciudad se esconden obras de arte que muchas veces pasan desapercibidas.'
             }
         </p>
 
-        <p>Vuestra misión será seguir las instrucciones, encontrar las esculturas, observarlas con atención
-            y escribir el nombre de cada obra.
-            <p>
+        <p>
+            Vuestra misión será seguir las instrucciones, encontrar las esculturas,
+            observarlas con atención y escribir el nombre de cada obra.
+        </p>
+
+        <p>
             ¿Seréis capaces de encontrarlas todas?
-            
-            </p>
+        </p>
 
         <div class="answer-row">
             <div style="flex:1;">
-                <p>🔎 1: Situados a comienzo de la calle León y Castillo, en la plaza de la constitución
-                    vamos a caminar por ella hasta llegar a una bifurcación. Ahí encontrarás la primera escultura.</p>
+                <p>
+                    🔎 1: Situados a comienzo de la calle León y Castillo,
+                    en la plaza de la Constitución vamos a caminar por ella
+                    hasta llegar a una bifurcación. Ahí encontrarás la primera escultura.
+                </p>
+
                 <input id="obj8_1" class="field"
                     placeholder="Respuesta 1"
                     value="${completada ? 'respuesta1' : ''}"
                     ${completada ? 'disabled' : ''}>
             </div>
+
             <span id="ok8_1">${completada ? '✅' : ''}</span>
         </div>
 
         <div class="answer-row">
             <div style="flex:1;">
-                <p>🏰 2: Si seguimos recto llegamos a una plaza y un parque, busca y escribe el nombre de:</p><p>🗝️ Un Busto</p>
+                <p>
+                    🏰 2: Si seguimos recto llegamos a una plaza y un parque,
+                    busca y escribe el nombre de:
+                </p>
+
+                <p>🗝️ Un Busto</p>
+
                 <input id="obj8_2" class="field"
                     placeholder="Un Busto"
                     value="${completada ? 'respuesta2' : ''}"
                     ${completada ? 'disabled' : ''}>
             </div>
+
             <span id="ok8_2">${completada ? '✅' : ''}</span>
         </div>
 
         <div class="answer-row">
             <div style="flex:1;">
-                <p>⚱️ Un monolito</p>
+                <p>🎨 Un Mural</p>
+
                 <input id="obj8_3" class="field"
-                    placeholder="Un Monolito"
+                    placeholder="Un Mural"
                     value="${completada ? 'respuesta3' : ''}"
                     ${completada ? 'disabled' : ''}>
             </div>
+
             <span id="ok8_3">${completada ? '✅' : ''}</span>
         </div>
 
         <div class="answer-row">
             <div style="flex:1;">
-                <p>🎨 Un Mural</p>
+                <p>🗿 Una Estatua</p>
+
                 <input id="obj8_4" class="field"
-                    placeholder="Un Mural"
+                    placeholder="Una Estatua"
                     value="${completada ? 'respuesta4' : ''}"
                     ${completada ? 'disabled' : ''}>
             </div>
+
             <span id="ok8_4">${completada ? '✅' : ''}</span>
         </div>
 
         <div class="answer-row">
             <div style="flex:1;">
-                <p>🗿 Una Estatua</p>
+                <p>
+                    🏴‍☠️ 3: Además, hay un conjunto de esculturas de metal.
+                    ¿Cuántas hay?
+                </p>
+
                 <input id="obj8_5" class="field"
-                    placeholder="Una Estatua"
+                    placeholder="Respuesta 5"
                     value="${completada ? 'respuesta5' : ''}"
                     ${completada ? 'disabled' : ''}>
             </div>
-            <span id="ok8_5">${completada ? '✅' : ''}</span>
-        </div>
 
-        <div class="answer-row">
-            <div style="flex:1;">
-                <p>🏴‍☠️ 3: Además, hay un conjunto de esculturas de metal. ¿Cuántas hay?</p>
-                <input id="obj8_6" class="field"
-                    placeholder="Respuesta 6"
-                    value="${completada ? 'respuesta6' : ''}"
-                    ${completada ? 'disabled' : ''}>
-            </div>
-            <span id="ok8_6">${completada ? '✅' : ''}</span>
+            <span id="ok8_5">${completada ? '✅' : ''}</span>
         </div>
 
         <div id="feedbackPrueba8"
@@ -1690,20 +1703,21 @@ function prueba8() {
     `;
 }
 
+
 function comprobarPrueba8() {
 
-   const answers = [
-    ["poeta domingo rivero", "domingo rivero", "poeta"],
-    ["pirata", "el pirata"],
-    ["arucas", "ciudad de arucas"],
-    ["ron", "ron canario", "ron de canarias"],
-    ["barco", "el barco"],
-    ["4", "cuatro"]
-];
+    const answers = [
+        ["poeta domingo rivero", "domingo rivero", "poeta","domingo"],
+        ["guillermo", "guillermo sureda", "guillermo sureda arbelo", "sureda"],
+        ["labrante", "reconocimiento","reconocimiento labrante","reconocimiento al labrante"],
+        ["garoe", "voluntariado", "homenaje voluntariado", "homenaje al voluntariado", "homenaje", "garoe homenaje al voluntariado"],
+        ["4", "cuatro","four"]
+    ];
 
     let correct = 0;
 
-    for (let i = 1; i <= 6; i++) {
+    // Ahora solo comprobamos 5 campos
+    for (let i = 1; i <= 5; i++) {
 
         const input = $('obj8_' + i);
         const feedback = $('ok8_' + i);
@@ -1714,10 +1728,10 @@ function comprobarPrueba8() {
         }
 
         if (
-    answers[i - 1].some(respuesta =>
-        norm(input.value) === norm(respuesta)
-    )
-) {
+            answers[i - 1].some(respuesta =>
+                norm(input.value) === norm(respuesta)
+            )
+        ) {
 
             input.style.borderColor = '#20a66b';
             input.style.background = '#effbf5';
@@ -1737,7 +1751,7 @@ function comprobarPrueba8() {
 
     const feedback = $('feedbackPrueba8');
 
-    if (correct === 6) {
+    if (correct === 5) {
 
         if (!state.completed.includes(7)) {
             state.completed.push(7);
@@ -1752,7 +1766,7 @@ function comprobarPrueba8() {
             <div style="text-align:center; padding:15px 0;">
                 <div style="font-size:45px;">🎉🏴‍☠️🎉</div>
                 <h2>¡PRUEBA SUPERADA!</h2>
-                <p>¡Habéis resuelto las seis pistas!</p>
+                <p>¡Habéis resuelto las cinco pistas!</p>
             </div>
         `;
 
@@ -1761,7 +1775,7 @@ function comprobarPrueba8() {
     } else {
 
         feedback.innerHTML =
-            `<span class="bad">Os faltan ${6 - correct} respuestas correctas.</span>`;
+            `<span class="bad">Os faltan ${5 - correct} respuestas correctas.</span>`;
 
         feedback.className = 'feedback';
     }
