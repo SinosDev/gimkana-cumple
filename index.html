@@ -425,6 +425,84 @@ button, input {
 .test.final-test.done .name {
     color: #fff;
 }
+
+/* PANTALLA FINAL A PANTALLA COMPLETA */
+
+#finish {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 0;
+}
+
+.final-celebration {
+    min-height: 100%;
+    width: 100%;
+    padding: 35px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background:
+        radial-gradient(circle at top, #664477, transparent 55%),
+        linear-gradient(145deg, #172638, #3b2456);
+}
+
+.final-icon {
+    font-size: 80px;
+    animation: trophyBounce 1.5s infinite;
+}
+
+.final-celebration h1 {
+    color: #ffe08a;
+    font-size: clamp(34px, 8vw, 58px);
+    line-height: 1.1;
+    margin: 15px 0;
+    text-shadow: 0 4px 15px #0006;
+}
+
+.final-team {
+    font-size: 24px;
+}
+
+.final-message {
+    max-width: 650px;
+    font-size: clamp(18px, 4vw, 23px);
+    line-height: 1.5;
+}
+
+.final-message strong {
+    color: #ffe08a;
+}
+
+.final-button {
+    margin-top: 20px;
+    padding: 16px 24px;
+    border: 0;
+    border-radius: 18px;
+    background: #ffe08a;
+    color: #172638;
+    font-size: 17px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.confetti {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+@keyframes trophyBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
 </style>
 </head>
 
@@ -1345,12 +1423,12 @@ function prueba5() {
         <h2>🔍 Encuentra las 5 diferencias</h2>
 
         <p>
-            Hay un lugar donde las voces se escuchan y no vemos a quien habla, 
-            suena la música y se cuentan noticias. Tendréis que encontrar ese lugar.
+            Hay un lugar donde las voces se escuchan y <strong> no vemos quien habla, 
+            suena la música y se cuentan noticias.</strong> Tendréis que encontrar ese lugar.
 
         <p>   
-            Una vez allí encontraréis la imagen en la que debéis encontrar las cinco diferencias.
-            (Identifica la diferencia con una sola palabra).
+            Una vez allí encontraréis la imagen en la que debéis encontrar al menos 5 de las 6 diferencias.
+            (Escribe la diferencia con una sola palabra).
         </p>
 
         <img
@@ -1395,10 +1473,11 @@ function prueba5() {
 function comprobarPrueba5() {
     const respuestasValidas = [
         ["luna", "cara", "circulo",],
-        ["sol", "avion", "helicoptero"],
+        ["sol", "avion", "helicoptero","pez"],
         ["corazon", "cactus","planta"],
         ["montaña", "nieve","pico"],
-        ["gafas","gafa", "hombre", "ojos","ojo"]
+        ["gafas","gafa", "hombre", "ojos","ojo"],
+        ["barco","barca","barco pirata","velas"]
     ];
 
     const feedback = $('feedbackPrueba5');
@@ -1673,9 +1752,9 @@ function prueba8() {
         <div class="answer-row">
             <div style="flex:1;">
                 <p>
-                    🔎 1: Situados a comienzo de la calle León y Castillo,
-                    en la plaza de la Constitución vamos a caminar por ella
-                    hasta llegar a una bifurcación. Ahí encontrarás la primera escultura.
+                    🔎 1: Caminando por la calle León y Castillo,
+                    en sentido contrario a la plaza de la Constitución llegaremos
+                     a una bifurcación. Ahí encontrarás la primera escultura.
                 </p>
 
                 <input id="obj8_1" class="field"
@@ -1690,11 +1769,11 @@ function prueba8() {
         <div class="answer-row">
             <div style="flex:1;">
                 <p>
-                    🏰 2: Si seguimos recto llegamos a una plaza y un parque,
+                    🏰 2: Si seguimos en la misma dirección llegaremos a una plaza y un parque,
                     busca y escribe el nombre de:
                 </p>
 
-                <p>🗝️ Un Busto</p>
+                <p>🗿 Un Busto</p>
 
                 <input id="obj8_2" class="field"
                     placeholder="Un Busto"
@@ -1707,7 +1786,7 @@ function prueba8() {
 
         <div class="answer-row">
             <div style="flex:1;">
-                <p>🎨 Un Mural</p>
+                <p>🪨 Un Mural</p>
 
                 <input id="obj8_3" class="field"
                     placeholder="Un Mural"
@@ -1720,7 +1799,7 @@ function prueba8() {
 
         <div class="answer-row">
             <div style="flex:1;">
-                <p>🗿 Una Estatua</p>
+                <p>🗽 Una Estatua</p>
 
                 <input id="obj8_4" class="field"
                     placeholder="Una Estatua"
@@ -1734,7 +1813,7 @@ function prueba8() {
         <div class="answer-row">
             <div style="flex:1;">
                 <p>
-                    🏴‍☠️ 3: Además, hay un conjunto de esculturas de metal.
+                    🗼 3: Además, hay un conjunto de esculturas de metal.
                     ¿Cuántas hay?
                 </p>
 
@@ -1773,7 +1852,7 @@ function comprobarPrueba8() {
         ["poeta domingo rivero", "domingo rivero", "poeta","domingo"],
         ["guillermo", "guillermo sureda", "guillermo sureda arbelo", "sureda"],
         ["labrante", "reconocimiento","reconocimiento labrante","reconocimiento al labrante"],
-        ["garoe", "voluntariado", "homenaje voluntariado", "homenaje al voluntariado", "homenaje", "garoe homenaje al voluntariado"],
+        ["garoe", "voluntariado", "homenaje voluntariado", "homenaje al voluntariado", "homenaje", "garoe homenaje al voluntariado","garoe, homenaje al voluntariado"],
         ["4", "cuatro","four"]
     ];
 
@@ -1827,7 +1906,7 @@ function comprobarPrueba8() {
 
         feedback.innerHTML = `
             <div style="text-align:center; padding:15px 0;">
-                <div style="font-size:45px;">🎉🏴‍☠️🎉</div>
+                <div style="font-size:45px;">🎉🎉🎉</div>
                 <h2>¡PRUEBA SUPERADA!</h2>
                 <p>¡Habéis resuelto las cinco pistas!</p>
             </div>
@@ -1868,7 +1947,7 @@ function complete(i) {
     render();
     progress();
 
-    if (state.completed.length < 10) {
+    if (state.completed.length < 8) {
         home();
     }
     
@@ -1928,33 +2007,42 @@ function home() {
    ========================= */
 
 function finish() {
-
     $('home').classList.add('hidden');
     $('test').classList.add('hidden');
     $('finish').classList.remove('hidden');
 
     $('finish').innerHTML = `
-        <div class="finish">
+        <div class="final-celebration">
+            <div class="confetti">🎉 ✨ 🎊</div>
 
-            <div class="emoji">🏆🎉</div>
+            <div class="final-icon">🏆</div>
 
-            <h2>¡GIMKANA COMPLETADA!</h2>
+            <h1>¡GIMKANA COMPLETADA!</h1>
 
-            <p>
-                Equipo:
-                <strong>${safe(state.team || 'sin nombre')}</strong>
+            <p class="final-team">
+                ¡Enhorabuena, <strong>${state.team || 'equipo'}</strong>!
             </p>
 
-            <div class="code">¡FIESTA!</div>
+            <p class="final-message">
+    ¡Habéis superado todas las pruebas! 🎉<br><br>
 
-            <p>
-                Enséñale esta pantalla a la persona organizadora.
-            </p>
+    <strong>🏆 ¡MISIÓN CUMPLIDA!</strong><br><br>
 
+    Pero antes de terminar, tenemos una última misión... 💌<br><br>
+
+    <strong>Coged el papel que ya teneis y escribidle un mensaje a la cumpleañera.</strong><br>
+    Podéis escribirle una felicitación, un deseo,
+    algo bonito que queráis decirle o un recuerdo que tengáis con ella. ❤️<br><br>
+
+    <strong>¡Este mensaje será vuestro regalo antes de ir al MC DONALDS!🍟 </strong>
+</p>
+
+            <button class="final-button" onclick="home()">
+                🎉 VOLVER AL INICIO
+            </button>
         </div>
     `;
 }
-
 /* =========================
    SEGURIDAD DEL TEXTO
    ========================= */
