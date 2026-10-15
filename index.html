@@ -1085,7 +1085,7 @@ function prueba2() {
 
 
          <div id="p2word1" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Posición 1: <strong>NOS</strong>' : '🔒 Posición 1: Torres en el templo'}
+            ${completada ? '🔓 Posición 1: <strong>👍</strong>' : '🔒 Posición 1: Torres en el templo'}
         </div>
 
         <div class="answer-row">
@@ -1097,7 +1097,7 @@ function prueba2() {
         </div>
 
        <div id="p2word2" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Posición 2: <strong>VEMOS</strong>' : '🔒 Posición 2: Accesos al templo'}
+            ${completada ? '🔓 Posición 2: <strong>👍</strong>' : '🔒 Posición 2: Accesos al templo'}
         </div>
 
 
@@ -1110,7 +1110,7 @@ function prueba2() {
         </div>
 
         <div id="p2word3" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Posición 3: <strong>EN</strong>' : '🔒 Posición 3: Años que tardaron en construir'}
+            ${completada ? '🔓 Posición 3: <strong>👍</strong>' : '🔒 Posición 3: Años que tardaron en construir'}
         </div>
 
 
@@ -1123,7 +1123,7 @@ function prueba2() {
         </div>
 
         <div id="p2word4" class="feedback ${completada ? 'ok' : ''}">
-            ${completada ? '🔓 Posición 4: <strong>McDonald\'s</strong>' : '🔒 Posición 4: Rosetones'}
+            ${completada ? '🔓 Posición 4: <strong>👍</strong>' : '🔒 Posición 4: Rosetones'}
         </div>
 
 
@@ -1149,14 +1149,14 @@ function prueba2() {
                 padding:15px 0;
              ">
             ${completada
-                ? "NOS · VEMOS · EN · McDonald's"
+                ? "✅ · ✅ · ✅ · ✅"
                 : "_ _ _ _"
             }
         </div>
 
         <div id="p2feedback" class="feedback ${completada ? 'ok' : ''}">
             ${completada
-                ? '🎉 ¡Mensaje descubierto! Nos vemos en McDonald\'s.'
+                ? '🎉 ¡Mensaje descubierto!'
                 : ''
             }
         </div>
@@ -1193,10 +1193,10 @@ function comprobarPrueba2() {
     ];
 
     const words = [
-        "NOS",
-        "VEMOS",
-        "EN",
-        "McDonald's"
+        "✅",
+        "✅",
+        "✅",
+        "✅"
     ];
 
     let correct = 0;
@@ -1251,18 +1251,14 @@ if (correct === 4) {
 
     $('p2feedback').innerHTML = `
         <div style="text-align:center;padding:20px 0;">
-            <div style="font-size:45px;">🎉🍟🎉</div>
+            <div style="font-size:45px;">🎉🎉</div>
 
             <h2 style="color:#ff2f87;">
                 ¡MENSAJE DESCUBIERTO!
             </h2>
 
             <p style="font-size:23px;font-weight:900;">
-                NOS VEMOS EN McDonald's
-            </p>
-
-            <p>
-                ¡Ya sabes dónde continúa la aventura!
+                PULSA CONTINUAR PARA VERLO
             </p>
 
             <button class="primary"
@@ -2029,11 +2025,12 @@ function finish() {
 
     Pero antes de terminar, tenemos una última misión... 💌<br><br>
 
-    <strong>Coged el papel que ya teneis y escribidle un mensaje a la cumpleañera.</strong><br>
+    <strong>Coged el papel que ya tenéis y escribidle un mensaje a la cumpleañera.</strong><br>
     Podéis escribirle una felicitación, un deseo,
     algo bonito que queráis decirle o un recuerdo que tengáis con ella. ❤️<br><br>
 
-    <strong>¡Este mensaje será vuestro regalo antes de ir al MC DONALDS!🍟 </strong>
+    <strong>¡Este mensaje será uno de vuestros regalos para Arabia! </strong><br>
+    <strong>¡NOS VEMOS EN MC DONALDS!🍟 </strong>
 </p>
 
             <button class="final-button" onclick="home()">
