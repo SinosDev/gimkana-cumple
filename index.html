@@ -388,7 +388,43 @@ button, input {
     background-color: #fff0f0;
 }
 
+/* =========================
+   PRUEBA FINAL: MENSAJE EN EL TEMPLO
+   ========================= */
 
+.test.final-test {
+    position: relative;
+    overflow: hidden;
+    min-height: 125px;
+    color: #fff3cf;
+    background: linear-gradient(145deg, #172638, #30465a);
+    border: 2px solid #d6ad58;
+    box-shadow: 0 5px 18px rgba(91, 64, 20, .2);
+}
+
+.test.final-test .num {
+    color: #e5c779;
+    letter-spacing: 1.5px;
+}
+
+.test.final-test .name {
+    color: #fff3cf;
+    padding-right: 8px;
+}
+
+.test.final-test .check {
+    color: #f6d77e;
+}
+
+.test.final-test.done {
+    background: linear-gradient(145deg, #214b3b, #32634c);
+    border-color: #a8dfb9;
+}
+
+.test.final-test.done .num,
+.test.final-test.done .name {
+    color: #fff;
+}
 </style>
 </head>
 
@@ -435,7 +471,7 @@ button, input {
                     </div>
                 </div>
 
-                <div id="counter" class="counter">0/10</div>
+                <div id="counter" class="counter">0/8</div>
             </div>
 
             <div class="progress">
@@ -529,16 +565,6 @@ const tests = [
         title: "El Arte Escondido",
         type: "placeholder",
         text: "la de las esculturas"
-    },
-    {
-        title: "Prueba 9",
-        type: "placeholder",
-        text: "Aquí pondremos la novena prueba."
-    },
-    {
-        title: "Prueba 10",
-        type: "placeholder",
-        text: "Aquí pondremos la décima prueba."
     }
 ];
 
@@ -573,14 +599,14 @@ function save() {
 function progress() {
     const n = state.completed.length;
 
-    $('counter').textContent = `${n}/10`;
-    $('bar').style.width = `${n * 10}%`;
+    $('counter').textContent = `${n}/8`;
+    $('bar').style.width = `${n * 100 / 8}%`;
 
     $('teamLabel').textContent = state.team
         ? `Equipo: ${state.team}`
         : 'Equipo sin nombre';
 
-    if (n === 10) {
+    if (n === 8) {
         finish();
     }
 }
@@ -597,9 +623,9 @@ function render() {
 
         return `
             <button
-                class="test ${done ? 'done' : ''}"
-                onclick="openTest(${i})"
-            >
+    class="test ${done ? 'done' : ''} ${i === 1 ? 'final-test' : ''}"
+    onclick="openTest(${i})"
+>
                 <span class="check">
                     ${done ? '✅' : '🔎'}
                 </span>
@@ -618,6 +644,43 @@ function render() {
    ========================= */
 
 function openTest(i) {
+
+    // La Prueba 2 será la última
+    if (i === 1) {
+
+        const otrasPruebas = [0, 2, 3, 4, 5, 6, 7];
+
+        const todasCompletadas = otrasPruebas.every(
+            prueba => state.completed.includes(prueba)
+        );
+
+        if (!todasCompletadas) {
+            $('home').classList.add('hidden');
+            $('finish').classList.add('hidden');
+            $('test').classList.remove('hidden');
+
+            $('test').innerHTML = `
+                <h2>🔒 MENSAJE EN EL TEMPLO</h2>
+
+                <p>¡Esta es la prueba final!</p>
+
+                <p>
+                    Primero tenéis que completar las otras
+                    siete pruebas para poder desbloquearla.
+                </p>
+
+                <div style="text-align:center; font-size:60px; margin:25px 0;">
+                    🔐
+                </div>
+
+                <button class="back" onclick="home()">
+                    ← Volver
+                </button>
+            `;
+
+            return;
+        }
+    }
 
     $('home').classList.add('hidden');
     $('finish').classList.add('hidden');
