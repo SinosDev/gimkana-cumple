@@ -721,7 +721,18 @@ function render() {
    SELECTOR DE PRUEBAS
    ========================= */
 
-function openTest(i) {
+function openTest(i, desdeHistorial = false) {
+
+    // Si hemos llegado aquí pulsando sobre una prueba,
+    // creamos una entrada en el historial del navegador.
+    if (!desdeHistorial) {
+    history.pushState(
+        { pantalla: "prueba", prueba: i },
+        "",
+        "#prueba-" + (i + 1)
+    );
+}
+
 
     // La Prueba 2 será la última
     if (i === 1) {
@@ -1990,13 +2001,20 @@ function reiniciarGimkana() {
    VOLVER AL MENÚ
    ========================= */
 
-function home() {
+function home(desdeHistorial = false) {
+
+    // Si estamos volviendo al menú desde una prueba mediante
+    // el botón "← Volver", eliminamos la entrada de la prueba
+    // del historial.
+    if (!desdeHistorial && history.state?.pantalla === "prueba") {
+        history.back();
+        return;
+    }
 
     $('test').classList.add('hidden');
     $('finish').classList.add('hidden');
     $('home').classList.remove('hidden');
 }
-
 /* =========================
    PANTALLA FINAL
    ========================= */
@@ -2124,6 +2142,22 @@ function comprobarIntruso() {
     }
 };
 
+/* ==================================================
+   HISTORIAL DEL NAVEGADOR
+   ================================================== */
+
+// El menú es la pantalla principal.
+history.replaceState(
+    { pantalla: "menu" },
+    "",
+    "#menu"
+);
+
+// Cuando se pulsa ATRÁS o se hace el gesto de volver
+// en el móvil, regresamos al menú.
+window.addEventListener("popstate", function () {
+    home(true);
+});
 
 </script>
 </body>
