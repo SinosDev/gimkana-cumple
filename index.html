@@ -2128,10 +2128,10 @@ $('saveTeam').onclick = () => {
 
 function comprobarIntruso() {
     const respuesta = norm($('respuestaIntruso').value);
-    const correcta = "paraguas"; // Cambia aquí la respuesta correcta.
+    const correctas = ["paraguas","peluche","gorro"]; // Cambia aquí la respuesta correcta.
     const feedback = $('feedbackIntruso');
 
-    if (respuesta === correcta) {
+    if (correctas.includes(respuesta)) {
         feedback.textContent = "🎉 ¡Correcto! Has superado la prueba.";
         feedback.className = "feedback ok";
 
